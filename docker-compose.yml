@@ -1,0 +1,26 @@
+services:
+  nginx:
+    image: nginx:alpine
+    container_name: aquarismo-nginx
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+    ports:
+      - "80:80"
+    depends_on:
+      - frontend
+    networks:
+      - aquarismo-net
+
+  frontend:
+    container_name: aquarismo-frontend
+    build:
+      context: ./frontend
+    expose:
+      - "4000"
+    networks:
+      - aquarismo-net
+
+networks:
+  aquarismo-net:
+    driver: bridge
