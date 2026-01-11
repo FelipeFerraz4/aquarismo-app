@@ -9,6 +9,7 @@
 
 # Node modules and dependency files
 /node_modules/
+frontend/node_modules/
 /package-lock.json
 /yarn.lock
 
@@ -26,3 +27,13 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+*.log
+
+# Certificados Let's Encrypt
+nginx/certbot/live/
+nginx/certbot/archive/
+nginx/certbot/renewal/
+nginx/certbot/conf/
+*.pem
+
+
