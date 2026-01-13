@@ -14,8 +14,12 @@
 }
 
 .footer-brand {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
   .logo {
-    width: 48px;
+    width: 150px;
     margin-bottom: 0.75rem;
   }
 
