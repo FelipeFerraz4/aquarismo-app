@@ -69,15 +69,21 @@
   margin-left: 0.25rem;
 }
 
+.has-dropdown {
+  padding-bottom: 0.5rem;
+}
+
 .dropdown {
   display: none;
   position: absolute;
-  top: 120%;
+  top: 100%;
+  // margin-top: 10px;
   left: 0;
   background: #0b1c26;
   border-radius: 6px;
   padding: 0.5rem 0;
   min-width: 180px;
+  list-style: none;
 
   li {
     padding: 0.5rem 1rem;
