@@ -12,7 +12,34 @@ import { RouterModule } from '@angular/router';
 export class Navbar {
   menuOpen = false;
 
+  artigosOpen = false;
+  ferramentasOpen = false;
+
   toggleMenu() {
     this.menuOpen = !this.menuOpen;
+
+    // fecha accordions ao fechar o menu
+    if (!this.menuOpen) {
+      this.artigosOpen = false;
+      this.ferramentasOpen = false;
+    }
+  }
+
+  toggleArtigos() {
+    if (this.artigosOpen) {
+      this.artigosOpen = false;
+    } else {
+      this.artigosOpen = true;
+      this.ferramentasOpen = false;
+    }
+  }
+
+  toggleFerramentas() {
+    if (this.ferramentasOpen) {
+      this.ferramentasOpen = false;
+    } else {
+      this.ferramentasOpen = true;
+      this.artigosOpen = false;
+    }
   }
 }
