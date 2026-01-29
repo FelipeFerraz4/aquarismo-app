@@ -1,4 +1,4 @@
-<section class="hero-carousel">
+<section class="hero-carousel" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()">
     <div class="carousel">
 
         <div class="slide" *ngFor="let slide of slides; let i = index" [class.active]="i === currentSlide"
@@ -7,9 +7,12 @@
                 <h1>{{ slide.title }}</h1>
                 <p>{{ slide.description }}</p>
 
-                <a *ngIf="slide.button" mat-raised-button color="primary" [routerLink]="slide.button.link">
+                @if (slide.button) {
+                <a class="hero-btn" [routerLink]="slide.button.link">
                     {{ slide.button.text }}
+                    <span class="arrow">→</span>
                 </a>
+                }
             </div>
         </div>
 
