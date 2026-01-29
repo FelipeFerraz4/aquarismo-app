@@ -1,1 +1,27 @@
-<p>blog-home works!</p>
+<section class="hero-carousel">
+    <div class="carousel">
+
+        <div class="slide" *ngFor="let slide of slides; let i = index" [class.active]="i === currentSlide"
+            [style.backgroundImage]="'url(' + slide.image + ')'">
+            <div class="overlay">
+                <h1>{{ slide.title }}</h1>
+                <p>{{ slide.description }}</p>
+
+                <a *ngIf="slide.button" mat-raised-button color="primary" [routerLink]="slide.button.link">
+                    {{ slide.button.text }}
+                </a>
+            </div>
+        </div>
+
+        <!-- Controles -->
+        <button class="nav prev" (click)="prevSlide()">‹</button>
+        <button class="nav next" (click)="nextSlide()">›</button>
+
+        <!-- Indicadores -->
+        <div class="indicators">
+            <span *ngFor="let slide of slides; let i = index" [class.active]="i === currentSlide"
+                (click)="goToSlide(i)"></span>
+        </div>
+
+    </div>
+</section>
