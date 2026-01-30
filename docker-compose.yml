@@ -9,5 +9,5 @@ services:
       - infra-vps_infra-net
 
 networks:
-  infra-vps_infra-net:
+  infra-net:
     external: true
