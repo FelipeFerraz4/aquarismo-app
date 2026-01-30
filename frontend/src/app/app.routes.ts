@@ -7,10 +7,18 @@ export const routes: Routes = [
     loadChildren: () =>
       import('./features/blog/blog.routing').then(m => m.blogRoutes),
   },
+
+  // 404 (opcional, mas recomendado)
+  {
+    path: '**',
+    loadComponent: () =>
+      import('./features/blog/pages/not-found/not-found')
+        .then(m => m.NotFound),
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
