@@ -1,3 +1,4 @@
+<!-- Hero Carousel -->
 <section class="hero-carousel" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()">
     <div class="carousel">
 
@@ -28,6 +29,8 @@
 
     </div>
 </section>
+
+<!-- About Platform -->
 <section class="about-platform">
     <div class="about-container">
 
@@ -42,14 +45,34 @@
             <div class="about-text">
                 <p>
                     A <strong>Blue Fox Aquarismo</strong> é uma plataforma educacional criada
-                    para compartilhar experiências reais sobre aquários, peixes,
-                    plantas e manutenção.
+                    para compartilhar conhecimento real e acessível sobre aquários,
+                    peixes, plantas aquáticas e manutenção responsável.
                 </p>
 
                 <p>
-                    Aqui você não encontra apenas teoria, mas também erros comuns,
-                    boas práticas, guias passo a passo e ferramentas interativas que
-                    ajudam desde iniciantes até aquaristas mais experientes.
+                    O projeto nasceu da prática e da observação do dia a dia no aquarismo,
+                    reunindo experiências reais, aprendizados contínuos e situações comuns
+                    enfrentadas por quem está começando ou já possui um aquário montado.
+                </p>
+
+                <p>
+                    Aqui você não encontra apenas teoria isolada, mas também explicações
+                    claras sobre erros frequentes, boas práticas, cuidados essenciais,
+                    ciclagem, compatibilidade entre espécies e manutenção a longo prazo.
+                </p>
+
+                <p>
+                    Além do conteúdo escrito, a plataforma oferece <strong>ferramentas
+                        interativas</strong> que auxiliam no aprendizado prático, ajudando você
+                    a planejar aquários, testar conhecimentos e tomar decisões mais seguras
+                    para o bem-estar dos peixes e do ecossistema aquático.
+                </p>
+
+                <p>
+                    A Blue Fox Aquarismo é voltada tanto para <strong>iniciantes</strong>,
+                    que buscam orientação confiável desde o primeiro aquário, quanto para
+                    <strong>aquaristas mais experientes</strong> que desejam aprofundar
+                    seus conhecimentos e evoluir continuamente.
                 </p>
             </div>
 
@@ -80,5 +103,59 @@
             </div>
         </div>
 
+    </div>
+</section>
+
+<!-- Tools -->
+<section class="tools">
+    <div class="tools-container">
+
+        <header class="tools-header">
+            <h2>Ferramentas Interativas</h2>
+            <p>
+                Aprenda aquarismo de forma prática, visual e interativa com
+                ferramentas pensadas para todos os níveis.
+            </p>
+        </header>
+
+        <div class="tools-grid">
+
+            <div class="tool-card">
+                <div class="tool-icon">🧪</div>
+                <h3>Montar Aquário</h3>
+                <p>
+                    Simule a montagem de aquários considerando espécies,
+                    tamanho, filtragem e compatibilidade.
+                </p>
+                <a routerLink="/ferramentas/montar-aquario" class="tool-link">
+                    Acessar ferramenta →
+                </a>
+            </div>
+
+            <div class="tool-card">
+                <div class="tool-icon">🐠</div>
+                <h3>Quiz de Peixes</h3>
+                <p>
+                    Teste seus conhecimentos sobre espécies, cuidados e
+                    manutenção enquanto aprende.
+                </p>
+                <a routerLink="/ferramentas/quiz-peixes" class="tool-link">
+                    Fazer o quiz →
+                </a>
+            </div>
+
+            <div class="tool-card">
+                <div class="tool-icon">🎮</div>
+                <h3>Jogos Educativos</h3>
+                <p>
+                    Aprendizado leve e interativo com jogos educativos
+                    focados no aquarismo.
+                </p>
+                <a routerLink="/ferramentas/jogos" class="tool-link">
+                    Explorar jogos →
+                </a>
+            </div>
+
+        </div>
     </div>
 </section>
