@@ -1,5 +1,41 @@
-// Hero Carousel
+// Cores do tema
+// .about-platform {
+//     background: #0e2533;
+//     color: #b6cbd8;
+// }
 
+// .tools {
+//     background: #0e2533;
+//     color: #b6cbd8;
+// }
+
+// .community {
+//     background: #0e2533;
+//     color: #eaf6f8;
+// }
+
+.about-platform {
+    background: linear-gradient(180deg,
+            #0a1f2c,
+            #0b1c26);
+    color: #b6cbd8;
+}
+
+.tools {
+    background: linear-gradient(180deg,
+            #0b1c26,
+            #0e2a3a);
+    color: #b6cbd8;
+}
+
+.community {
+    background: linear-gradient(180deg,
+            #0e2a3a,
+            #154257);
+    color: #eaf6f8;
+}
+
+// Hero Carousel
 .hero-carousel {
     position: relative;
     height: clamp(320px, 60vh, 520px);
@@ -141,11 +177,8 @@
 }
 
 // About Platform
-
 .about-platform {
-    background: linear-gradient(180deg, #0b1c26, #0e2533);
     padding: clamp(3rem, 6vw, 5rem) 1.5rem;
-    color: #b6cbd8;
 }
 
 .about-container {
@@ -239,9 +272,7 @@
 // Tools Section
 
 .tools {
-    background: #0e2533;
     padding: clamp(3rem, 6vw, 5rem) 1.5rem;
-    color: #b6cbd8;
 }
 
 .tools-container {
@@ -340,11 +371,9 @@
     }
 }
 
-/* Community Section */
+/* Community */
 .community {
     padding: 4.5rem 1.5rem;
-    background: linear-gradient(135deg, #0f2a33, #0b1e24);
-    color: #eaf6f8;
     display: flex;
     justify-content: center;
 }
