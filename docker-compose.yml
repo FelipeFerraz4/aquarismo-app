@@ -6,8 +6,8 @@ services:
     expose:
       - "4000"
     networks:
-      - infra-vps_infra-net
+      - infra-net
 
 networks:
-  infra-vps_infra-net:
+  infra-net:
     external: true
