@@ -5,10 +5,21 @@ export const routes: Routes = [
   {
     path: '',
     loadChildren: () =>
-      import('./features/blog/blog.routing').then(m => m.blogRoutes),
+      import('./features/blog/blog.routing')
+        .then(m => m.blogRoutes),
   },
-
-  // 404 (opcional, mas recomendado)
+  {
+    path: 'terms-of-use',
+    loadComponent: () =>
+      import('./features/blog/pages/terms/terms')
+        .then(m => m.Terms),
+  },
+  {
+    path: 'privacy-policy',
+    loadComponent: () =>
+      import('./features/blog/pages/privacy/privacy')
+        .then(m => m.Privacy),
+  },
   {
     path: '**',
     loadComponent: () =>
