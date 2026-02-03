@@ -2,10 +2,11 @@ import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { Footer } from './shared/components/footer/footer';
 import { Navbar } from './shared/components/navbar/navbar';
+import { CookieBanner } from './shared/components/cookie-banner/cookie-banner';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Footer, Navbar],
+  imports: [RouterOutlet, Footer, Navbar, CookieBanner],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
