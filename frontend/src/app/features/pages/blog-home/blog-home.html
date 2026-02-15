@@ -1,0 +1,178 @@
+<!-- Hero Carousel -->
+<swiper-container slides-per-view="1" loop="true" autoplay-delay="5000" autoplay-disable-on-interaction="false"
+    navigation="true" pagination="true" class="hero-swiper">
+    <swiper-slide *ngFor="let slide of slides">
+        <div class="hero-slide" [style.backgroundImage]="'url(' + slide.image + ')'">
+            <div class="overlay">
+                <h1>{{ slide.title }}</h1>
+                <p>{{ slide.description }}</p>
+
+                <a *ngIf="slide.button" class="hero-btn" [routerLink]="slide.button.link">
+                    {{ slide.button.text }}
+                </a>
+            </div>
+        </div>
+    </swiper-slide>
+</swiper-container>
+
+
+<!-- About Platform -->
+<section class="about-platform">
+    <div class="about-container">
+
+        <header class="about-header">
+            <h2>O que é a Blue Fox Aquarismo?</h2>
+            <p class="subtitle">
+                Conhecimento real, prático e acessível sobre aquarismo.
+            </p>
+        </header>
+
+        <div class="about-content">
+            <div class="about-text">
+                <p>
+                    A <strong>Blue Fox Aquarismo</strong> é uma plataforma educacional criada para
+                    compartilhar conhecimento real e acessível sobre aquários, peixes, plantas
+                    aquáticas e manutenção responsável.
+                </p>
+
+                <p>
+                    O projeto nasceu da prática e da observação do dia a dia no aquarismo,
+                    reunindo experiências reais, aprendizados contínuos e situações comuns
+                    enfrentadas tanto por quem está montando o primeiro aquário quanto por
+                    aquaristas mais experientes.
+                </p>
+
+                <p>
+                    Aqui você encontra muito mais do que teoria: explicações claras sobre
+                    erros frequentes, boas práticas, ciclagem, compatibilidade entre espécies
+                    e cuidados essenciais para a manutenção saudável do aquário a longo prazo.
+                </p>
+
+                <p>
+                    Além dos conteúdos escritos, a plataforma oferece <strong>ferramentas
+                        interativas</strong> que auxiliam no aprendizado prático, ajudando você a
+                    planejar aquários, testar conhecimentos e tomar decisões mais seguras para
+                    o bem-estar dos peixes e do ecossistema aquático.
+                </p>
+            </div>
+
+            <div class="about-features">
+                <div class="feature-card">
+                    <h3>📘 Conteúdo Educativo</h3>
+                    <p>
+                        Artigos, guias e explicações claras sobre montagem,
+                        ciclagem, espécies e cuidados.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <h3>🛠️ Ferramentas Interativas</h3>
+                    <p>
+                        Recursos práticos para aprender de forma visual,
+                        testar conhecimentos e planejar aquários.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <h3>🐠 Experiência Real</h3>
+                    <p>
+                        Conteúdo baseado em prática, observação e aprendizado
+                        contínuo no mundo do aquarismo.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- Tools -->
+<section class="tools">
+    <div class="tools-container">
+
+        <header class="tools-header">
+            <h2>Ferramentas Interativas</h2>
+            <p>
+                Aprenda aquarismo de forma prática, visual e interativa com
+                ferramentas pensadas para todos os níveis.
+            </p>
+        </header>
+
+        <div class="tools-grid">
+
+            <div class="tool-card">
+                <div class="tool-icon">🧪</div>
+                <h3>Montar Aquário</h3>
+                <p>
+                    Simule a montagem de aquários considerando espécies,
+                    tamanho, filtragem e compatibilidade.
+                </p>
+                <a routerLink="/ferramentas/montar-aquario" class="tool-link">
+                    Acessar ferramenta →
+                </a>
+            </div>
+
+            <div class="tool-card">
+                <div class="tool-icon">🐠</div>
+                <h3>Quiz de Peixes</h3>
+                <p>
+                    Teste seus conhecimentos sobre espécies, cuidados e
+                    manutenção enquanto aprende.
+                </p>
+                <a routerLink="/ferramentas/quiz-peixes" class="tool-link">
+                    Fazer o quiz →
+                </a>
+            </div>
+
+            <div class="tool-card">
+                <div class="tool-icon">🎮</div>
+                <h3>Jogos Educativos</h3>
+                <p>
+                    Aprendizado leve e interativo com jogos educativos
+                    focados no aquarismo.
+                </p>
+                <a routerLink="/ferramentas/jogos" class="tool-link">
+                    Explorar jogos →
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- Community -->
+<section class="community">
+    <div class="community-content">
+        <h2>Aprenda com Experiências Reais</h2>
+
+        <p>
+            Todo o conteúdo da <strong>Blue Fox Aquarismo</strong> nasce da prática:
+            testes, erros, ajustes e aprendizados do dia a dia com aquários reais.
+            Assim, construímos um conhecimento sólido, honesto e confiável para
+            aquaristas de todos os níveis.
+        </p>
+
+        <p>
+            Aqui não existem fórmulas mágicas ou promessas irreais. O foco é mostrar
+            o que realmente funciona, explicar os motivos por trás de cada prática
+            e alertar sobre problemas comuns que muitos aquaristas enfrentam.
+        </p>
+
+        <p>
+            O projeto também está sempre aberto ao diálogo. Sugestões de novos
+            conteúdos, correções, melhorias ou até experiências pessoais são
+            muito bem-vindas. A ideia é evoluir continuamente junto com a comunidade.
+        </p>
+
+        <div class="community-actions">
+            <a routerLink="/about" class="community-btn primary">
+                Conheça o Projeto <span class="arrow">→</span>
+            </a>
+
+            <a routerLink="/articles" class="community-btn secondary">
+                Ver Artigos <span class="arrow">→</span>
+            </a>
+        </div>
+
+    </div>
+</section>
