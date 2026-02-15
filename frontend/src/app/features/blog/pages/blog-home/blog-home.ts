@@ -31,7 +31,7 @@ export class BlogHome implements OnInit, OnDestroy {
 
   slides = [
     {
-      image: 'assets/pages/home/slide-1.png',
+      image: 'assets/pages/home/slide-12.webp',
       title: 'Aprenda sobre Aquarismo',
       description: 'Guias práticos e experiências reais.',
       button: {
@@ -40,7 +40,7 @@ export class BlogHome implements OnInit, OnDestroy {
       }
     },
     {
-      image: 'assets/pages/home/slide-2.png',
+      image: 'assets/pages/home/slide-2.webp',
       title: 'Monte seu Aquário com Segurança',
       description: 'Evite erros comuns e cuide melhor dos peixes.',
       button: {
@@ -49,7 +49,7 @@ export class BlogHome implements OnInit, OnDestroy {
       }
     },
     {
-      image: 'assets/pages/home/slide-3.png',
+      image: 'assets/pages/home/slide-3.webp',
       title: 'Divirta-se com as Ferramentas Educativas sobre Aquarismo',
       description: 'Aprenda de forma interativa.',
       button: {
