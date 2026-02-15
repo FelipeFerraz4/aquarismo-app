@@ -5,11 +5,12 @@ WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm install
+RUN npm ci
 RUN npm install -g @angular/cli@21
 
 COPY . .
-RUN ng build
+
+RUN ng build --configuration=production
 
 # ===== RUN SSR =====
 FROM node:20-alpine
@@ -19,7 +20,7 @@ WORKDIR /app
 COPY --from=build /app/dist ./dist
 COPY package*.json ./
 
-RUN npm install --omit=dev
+RUN npm ci --omit=dev
 
 EXPOSE 4000
 
