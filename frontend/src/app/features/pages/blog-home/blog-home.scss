@@ -47,6 +47,17 @@
     position: relative;
 }
 
+.hero-swiper {
+    height: clamp(320px, 60vh, 520px);
+}
+
+.hero-slide {
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+}
+
+
 .slide {
     position: absolute;
     inset: 0;

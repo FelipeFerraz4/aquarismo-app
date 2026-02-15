@@ -1,6 +1,7 @@
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import {
   Component,
+  CUSTOM_ELEMENTS_SCHEMA,
   Inject,
   OnDestroy,
   OnInit,
@@ -15,6 +16,7 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     RouterModule,
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './blog-home.html',
   styleUrl: './blog-home.scss',
 })
@@ -23,7 +25,6 @@ export class BlogHome implements OnInit, OnDestroy {
 
   private intervalId: number | null = null;
   private isBrowser = false;
-  private isPausedByHover = false;
 
   constructor(@Inject(PLATFORM_ID) platformId: object) {
     this.isBrowser = isPlatformBrowser(platformId);
@@ -61,40 +62,20 @@ export class BlogHome implements OnInit, OnDestroy {
 
   ngOnInit() {
     if (this.isBrowser) {
-      // Delay mínimo garante que mouseenter inicial não mate o autoplay
-      setTimeout(() => {
-        this.startAutoplay();
-      }, 0);
+      this.startAutoplay();
     }
   }
 
   ngOnDestroy() {
-    this.stopAutoplay();
-  }
-
-  startAutoplay() {
-    if (this.intervalId !== null) return;
-
-    this.intervalId = window.setInterval(() => {
-      if (!this.isPausedByHover) {
-        this.nextSlide();
-      }
-    }, 3000);
-  }
-
-  stopAutoplay() {
     if (this.intervalId !== null) {
       clearInterval(this.intervalId);
-      this.intervalId = null;
     }
   }
 
-  onMouseEnter() {
-    this.isPausedByHover = true;
-  }
-
-  onMouseLeave() {
-    this.isPausedByHover = false;
+  startAutoplay() {
+    this.intervalId = window.setInterval(() => {
+      this.nextSlide();
+    }, 5000); // 🔥 agora 5 segundos
   }
 
   nextSlide() {

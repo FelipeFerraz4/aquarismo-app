@@ -1,34 +1,20 @@
 <!-- Hero Carousel -->
-<section class="hero-carousel" (mouseenter)="onMouseEnter()" (mouseleave)="onMouseLeave()">
-    <div class="carousel">
-
-        <div class="slide" *ngFor="let slide of slides; let i = index" [class.active]="i === currentSlide"
-            [style.backgroundImage]="'url(' + slide.image + ')'">
+<swiper-container slides-per-view="1" loop="true" autoplay-delay="5000" autoplay-disable-on-interaction="false"
+    navigation="true" pagination="true" class="hero-swiper">
+    <swiper-slide *ngFor="let slide of slides">
+        <div class="hero-slide" [style.backgroundImage]="'url(' + slide.image + ')'">
             <div class="overlay">
                 <h1>{{ slide.title }}</h1>
                 <p>{{ slide.description }}</p>
 
-                @if (slide.button) {
-                <a class="hero-btn" [routerLink]="slide.button.link">
+                <a *ngIf="slide.button" class="hero-btn" [routerLink]="slide.button.link">
                     {{ slide.button.text }}
-                    <span class="arrow">→</span>
                 </a>
-                }
             </div>
         </div>
+    </swiper-slide>
+</swiper-container>
 
-        <!-- Controles -->
-        <button class="nav prev" (click)="prevSlide()">‹</button>
-        <button class="nav next" (click)="nextSlide()">›</button>
-
-        <!-- Indicadores -->
-        <div class="indicators">
-            <span *ngFor="let slide of slides; let i = index" [class.active]="i === currentSlide"
-                (click)="goToSlide(i)"></span>
-        </div>
-
-    </div>
-</section>
 
 <!-- About Platform -->
 <section class="about-platform">
