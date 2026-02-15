@@ -3,8 +3,6 @@ import {
   Component,
   CUSTOM_ELEMENTS_SCHEMA,
   Inject,
-  OnDestroy,
-  OnInit,
   PLATFORM_ID
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -20,11 +18,9 @@ import { RouterModule } from '@angular/router';
   templateUrl: './blog-home.html',
   styleUrl: './blog-home.scss',
 })
-export class BlogHome implements OnInit, OnDestroy {
-  currentSlide = 0;
+export class BlogHome {
 
-  private intervalId: number | null = null;
-  private isBrowser = false;
+  isBrowser: boolean;
 
   constructor(@Inject(PLATFORM_ID) platformId: object) {
     this.isBrowser = isPlatformBrowser(platformId);
@@ -32,7 +28,7 @@ export class BlogHome implements OnInit, OnDestroy {
 
   slides = [
     {
-      image: 'assets/pages/home/slide-12.webp',
+      image: 'assets/pages/home/slide-1.webp',
       title: 'Aprenda sobre Aquarismo',
       description: 'Guias práticos e experiências reais.',
       button: {
@@ -59,36 +55,4 @@ export class BlogHome implements OnInit, OnDestroy {
       }
     }
   ];
-
-  ngOnInit() {
-    if (this.isBrowser) {
-      this.startAutoplay();
-    }
-  }
-
-  ngOnDestroy() {
-    if (this.intervalId !== null) {
-      clearInterval(this.intervalId);
-    }
-  }
-
-  startAutoplay() {
-    this.intervalId = window.setInterval(() => {
-      this.nextSlide();
-    }, 5000); // 🔥 agora 5 segundos
-  }
-
-  nextSlide() {
-    this.currentSlide =
-      (this.currentSlide + 1) % this.slides.length;
-  }
-
-  prevSlide() {
-    this.currentSlide =
-      (this.currentSlide - 1 + this.slides.length) % this.slides.length;
-  }
-
-  goToSlide(index: number) {
-    this.currentSlide = index;
-  }
 }
