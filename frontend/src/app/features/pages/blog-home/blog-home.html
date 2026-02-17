@@ -1,6 +1,6 @@
-<!-- Hero Carousel -->
-<swiper-container slides-per-view="1" loop="true" autoplay-delay="5000" autoplay-disable-on-interaction="false"
-    navigation="true" pagination="true" class="hero-swiper">
+<swiper-container *ngIf="isBrowser" slides-per-view="1" loop="true" autoplay-delay="5000"
+    autoplay-disable-on-interaction="false" navigation="true" pagination="true" class="hero-swiper">
+
     <swiper-slide *ngFor="let slide of slides">
         <div class="hero-slide" [style.backgroundImage]="'url(' + slide.image + ')'">
             <div class="overlay">
@@ -13,6 +13,7 @@
             </div>
         </div>
     </swiper-slide>
+
 </swiper-container>
 
 
