@@ -4,7 +4,16 @@ import { RouterModule, Routes } from '@angular/router';
 export const routes: Routes = [
   {
     path: '',
-    loadComponent: () => import('./features/pages/blog-home/blog-home').then((m) => m.BlogHome),
+    children: [
+      {
+        path: '',
+        loadComponent: () => import('./features/pages/blog-home/blog-home').then((m) => m.BlogHome),
+      },
+      {
+        path: '',
+        loadChildren: () => import('./features/apps/app.routing').then((m) => m.appRoutes),
+      },
+    ],
   },
   {
     path: 'terms-of-use',
@@ -24,8 +33,7 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    loadComponent: () =>
-      import('./features/pages/not-found/not-found').then((m) => m.NotFound),
+    loadComponent: () => import('./features/pages/not-found/not-found').then((m) => m.NotFound),
   },
 ];
 
@@ -33,9 +41,9 @@ export const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes, {
       scrollPositionRestoration: 'enabled',
-      anchorScrolling: 'enabled'
-    })
+      anchorScrolling: 'enabled',
+    }),
   ],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
