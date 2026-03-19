@@ -26,6 +26,12 @@
   </url>
 
   <url>
+    <loc>https://bluefoxaquarismo.space/app/daily-habits/terms-of-use</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
     <loc>https://bluefoxaquarismo.space/about</loc>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
