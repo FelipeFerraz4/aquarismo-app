@@ -29,7 +29,8 @@ export const routes: Routes = [
   },
   {
     path: 'articles',
-    loadChildren: () => import('./features/articles.routing').then((m) => m.articlesRoutes),
+    loadChildren: () =>
+      import('./features/pages/articles/articles.routing').then((m) => m.articlesRoutes),
   },
   {
     path: '**',
