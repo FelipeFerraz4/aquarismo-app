@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HeaderType1 } from './header-type1';
+import { PostHeaderType1 } from './post-header-type1';
 
-describe('HeaderType1', () => {
-  let component: HeaderType1;
-  let fixture: ComponentFixture<HeaderType1>;
+describe('PostHeaderType1', () => {
+  let component: PostHeaderType1;
+  let fixture: ComponentFixture<PostHeaderType1>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HeaderType1],
+      imports: [PostHeaderType1],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(HeaderType1);
+    fixture = TestBed.createComponent(PostHeaderType1);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });
