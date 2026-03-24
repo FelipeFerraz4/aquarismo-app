@@ -7,7 +7,8 @@ export const routes: Routes = [
     children: [
       {
         path: '',
-        loadComponent: () => import('./features/pages/blog-home/blog-home').then((m) => m.BlogHome),
+        loadComponent: () =>
+          import('./features/pages/main/blog-home/blog-home').then((m) => m.BlogHome),
       },
       {
         path: '',
@@ -17,23 +18,25 @@ export const routes: Routes = [
   },
   {
     path: 'terms-of-use',
-    loadComponent: () => import('./features/pages/terms/terms').then((m) => m.Terms),
+    loadComponent: () => import('./features/pages/main/terms/terms').then((m) => m.Terms),
   },
   {
     path: 'privacy-policy',
-    loadComponent: () => import('./features/pages/privacy/privacy').then((m) => m.Privacy),
+    loadComponent: () => import('./features/pages/main/privacy/privacy').then((m) => m.Privacy),
   },
   {
     path: 'about',
-    loadComponent: () => import('./features/pages/about/about').then((m) => m.About),
+    loadComponent: () => import('./features/pages/main/about/about').then((m) => m.About),
   },
   {
     path: 'articles',
-    loadChildren: () => import('./features/articles.routing').then((m) => m.articlesRoutes),
+    loadChildren: () =>
+      import('./features/pages/articles/articles.routing').then((m) => m.articlesRoutes),
   },
   {
     path: '**',
-    loadComponent: () => import('./features/pages/not-found/not-found').then((m) => m.NotFound),
+    loadComponent: () =>
+      import('./features/pages/main/not-found/not-found').then((m) => m.NotFound),
   },
 ];
 
