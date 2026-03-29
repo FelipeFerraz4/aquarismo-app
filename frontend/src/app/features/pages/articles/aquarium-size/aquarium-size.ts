@@ -5,25 +5,24 @@ import { POST_MOCK } from '../../../../shared/model/mocks/post-mock';
 import { Post, SearchPostById, SearchPostBySlug } from '../../../../shared/model/types/post';
 
 @Component({
-  selector: 'app-aquarium-selection-guide',
-  standalone: true,
+  selector: 'app-aquarium-size',
   imports: [PostHeaderType1, RelatedPosts],
-  templateUrl: './aquarium-selection-guide.html',
-  styleUrl: './aquarium-selection-guide.scss',
+  templateUrl: './aquarium-size.html',
+  styleUrl: './aquarium-size.scss',
 })
-export class AquariumSelectionGuide {
+export class AquariumSize {
   currentPost: Post | undefined;
 
   recommended: Post[] = [];
   latest: Post[] = [];
 
   ngOnInit(): void {
-    this.currentPost = SearchPostBySlug(POST_MOCK, 'aquarium-selection-guide');
+    this.currentPost = SearchPostBySlug(POST_MOCK, 'aquarium-size');
 
     if (this.currentPost) {
       const currentId = this.currentPost.id;
 
-      this.recommended.push(SearchPostById(POST_MOCK, '2')!);
+      this.recommended.push(SearchPostById(POST_MOCK, '1')!);
       this.recommended.push(SearchPostById(POST_MOCK, '3')!);
 
       const allPostsReversed = [...POST_MOCK].filter((p) => p.id !== currentId).reverse();

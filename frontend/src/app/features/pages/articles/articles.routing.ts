@@ -8,4 +8,8 @@ export const articlesRoutes: Routes = [
         (m) => m.AquariumSelectionGuide,
       ),
   },
+  {
+    path: 'aquarium-size',
+    loadComponent: () => import('./aquarium-size/aquarium-size').then((m) => m.AquariumSize),
+  },
 ];
