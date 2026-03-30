@@ -18,7 +18,7 @@ export const POST_MOCK: Post[] = [
       'Descubra como as dimensões influenciam na iluminação e na escolha dos peixes. Veja proporções para iniciantes, aquapaisagismo e jumbos.',
     image: 'assets/images/aquariums/aquariums4.webp',
     date: '28 de Março de 2026',
-    category: 'Itens do Aquarismo',
+    category: 'Fundamentos do Aquarismo',
     slug: 'aquarium-size',
   },
   {
