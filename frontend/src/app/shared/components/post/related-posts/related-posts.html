@@ -8,7 +8,7 @@
 
       <div class="posts-grid">
         @for (post of recommendedPosts; track post.id) {
-          <a [routerLink]="['/blog', post.slug]" class="post-card">
+          <a [routerLink]="['/articles', post.slug]" class="post-card">
             <div class="card-image">
               <img [src]="post.image" [alt]="post.title" />
               <span class="category-tag">{{ post.category }}</span>
@@ -36,7 +36,7 @@
 
       <div class="posts-grid small">
         @for (post of lastPosts; track post.id) {
-          <a [routerLink]="['/blog', post.slug]" class="post-card">
+          <a [routerLink]="['/articles', post.slug]" class="post-card">
             <div class="card-image">
               <img [src]="post.image" [alt]="post.title" />
               <span class="category-tag">{{ post.category }}</span>
