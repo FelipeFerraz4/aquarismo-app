@@ -22,15 +22,19 @@ export class AquariumSize implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    const postData = this.postService.getPostPageData('aquarium-size', ['1', '3']);
+    this.loadPostData('aquarium-size', ['1', '3']);
+
+    this.setupSeo();
+  }
+
+  loadPostData(slug: string, recommendedIds: string[]) {
+    const postData = this.postService.getPostPageData(slug, recommendedIds);
 
     if (!postData) return;
 
     this.currentPost = postData.post;
     this.recommended = postData.recommended;
     this.latest = postData.latest;
-
-    this.setupSeo();
   }
 
   setupSeo() {
