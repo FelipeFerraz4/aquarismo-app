@@ -15,3 +15,9 @@ export function SearchPostById(posts: Post[], id: string): Post | undefined {
 export function SearchPostBySlug(posts: Post[], slug: string): Post | undefined {
   return posts.find((post) => post.slug === slug);
 }
+
+export interface PostPageData {
+  post: Post;
+  recommended: Post[];
+  latest: Post[];
+}
