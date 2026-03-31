@@ -1,5 +1,15 @@
 import { Post } from '../types/post';
 
+export const DEFAULT_POST: Post = {
+  id: '',
+  title: 'Blue Fox Aquarismo',
+  description: 'A Blue Fox Aquarismo é uma plataforma educacional criada para compartilhar conhecimento real e acessível sobre aquários, peixes, plantas aquáticas e manutenção.',
+  image: 'assets/images/aquariums/aquariums2.webp',
+  date: '24 de Março de 2026',
+  category: 'Itens do Aquarismo',
+  slug: 'aquarium-selection-guide',
+};
+
 export const POST_MOCK: Post[] = [
   {
     id: '1',
