@@ -1,0 +1,7 @@
+<app-post-header-type1 [title]="currentPost?.title ?? ''" [description]="currentPost?.description ?? ''"
+    [imageUrl]="currentPost?.image ?? ''" [author]="currentPost?.author ?? ''" [date]="currentPost?.date ?? ''"
+    [readingTime]="currentPost?.readingTime ?? ''" [category]="currentPost?.category ?? ''" />
+
+
+
+<app-related-posts [recommendedPosts]="recommended" [lastPosts]="latest" />

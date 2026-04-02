@@ -6,6 +6,8 @@ export interface Post {
   date: string;
   category: string;
   slug: string;
+  readingTime: string;
+  author: string;
 }
 
 export function SearchPostById(posts: Post[], id: string): Post | undefined {
