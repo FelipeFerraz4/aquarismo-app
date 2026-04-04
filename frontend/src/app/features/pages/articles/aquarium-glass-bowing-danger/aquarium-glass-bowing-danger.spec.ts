@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 
 import { AquariumGlassBowingDanger } from './aquarium-glass-bowing-danger';
 
@@ -8,7 +9,8 @@ describe('AquariumGlassBowingDanger', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AquariumGlassBowingDanger]
+      imports: [AquariumGlassBowingDanger],
+      providers: [provideRouter([])]
     })
     .compileComponents();
 

@@ -41,7 +41,7 @@ export const POST_MOCK: Post[] = [
     id: '3',
     title: 'Vidro de Aquário Curvado: Entenda o Perigo da Barriga',
     description:
-      'Vidro de aquário curvado: Descubra por que o efeito barriga acontece e como travas francesas ou transversais podem salvar seu projeto.',
+      'Descubra por que o efeito barriga (vidro de aquário curvado) acontece e como travas francesas ou transversais podem salvar seu projeto.',
     image: 'assets/images/aquariums/aquarium-glass-bowing.webp',
     date: '2 de Abril de 2026',
     category: 'Problemas no Aquarismo',
