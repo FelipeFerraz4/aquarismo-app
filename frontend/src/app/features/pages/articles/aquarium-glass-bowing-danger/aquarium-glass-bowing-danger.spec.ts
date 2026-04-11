@@ -28,10 +28,13 @@ describe('AquariumGlassBowingDanger', () => {
   };
 
   beforeEach(async () => {
-    (global as any).IntersectionObserver = jest.fn(() => ({
-      observe: jest.fn(),
-      disconnect: jest.fn()
-    }));
+    Object.defineProperty(window, 'IntersectionObserver', {
+      writable: true,
+      value: jest.fn(() => ({
+        observe: jest.fn(),
+        disconnect: jest.fn()
+      })),
+    });
 
     await TestBed.configureTestingModule({
       imports: [AquariumGlassBowingDanger],

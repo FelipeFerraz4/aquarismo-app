@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { Inject, PLATFORM_ID } from '@angular/core';
+import { Inject, PLATFORM_ID, AfterViewInit } from '@angular/core';
 import { PostHeaderType1 } from '../../../../shared/components/post/post-header-type1/post-header-type1';
 import { RelatedPosts } from '../../../../shared/components/post/related-posts/related-posts';
 import { Post } from '../../../../shared/model/types/post';
@@ -14,7 +14,7 @@ import { PostService } from '../../../../core/services/post/post';
   templateUrl: './aquarium-glass-bowing-danger.html',
   styleUrls: ['./aquarium-glass-bowing-danger.scss', '../articles-style.scss'],
 })
-export class AquariumGlassBowingDanger implements OnInit {
+export class AquariumGlassBowingDanger implements OnInit, AfterViewInit {
   currentPost?: Post;
   recommended: Post[] = [];
   latest: Post[] = [];
@@ -25,7 +25,7 @@ export class AquariumGlassBowingDanger implements OnInit {
   constructor(
     private seoService: SeoService,
     private postService: PostService,
-    @Inject(PLATFORM_ID) private platformId: Object
+    @Inject(PLATFORM_ID) private platformId: object
   ) { }
 
   ngOnInit(): void {
@@ -44,7 +44,7 @@ export class AquariumGlassBowingDanger implements OnInit {
 
     this.observer = new IntersectionObserver(([entry]) => {
       if (entry.isIntersecting) {
-        videoEl.play().catch(() => { });
+        videoEl.play().catch(() => { void 0 });
       } else {
         videoEl.pause();
       }

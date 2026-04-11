@@ -17,7 +17,7 @@ export class App {
 
   constructor(
     private router: Router,
-    @Inject(PLATFORM_ID) private platformId: Object,
+    @Inject(PLATFORM_ID) private platformId: object,
   ) {
     if (isPlatformBrowser(this.platformId)) {
       this.router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe(() => {

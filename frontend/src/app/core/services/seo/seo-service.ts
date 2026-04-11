@@ -9,7 +9,7 @@ export class SeoService {
     constructor(
         private titleService: Title,
         private metaService: Meta,
-        @Inject(PLATFORM_ID) private platformId: Object
+        @Inject(PLATFORM_ID) private platformId: object
     ) { }
 
     updateMetadata(data: {

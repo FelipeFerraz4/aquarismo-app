@@ -9,7 +9,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './privacy-policy.scss',
 })
 export class PrivacyPolicy implements OnInit {
-  currentYear: number = 0;
+  currentYear = 0;
 
   ngOnInit(): void {
     this.currentYear = new Date().getFullYear();
