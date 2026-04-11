@@ -1,23 +1,41 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
+import { SeoService } from '../../../../core/services/seo/seo-service';
+import { PostService } from '../../../../core/services/post/post';
 import { AquariumSelectionGuide } from './aquarium-selection-guide';
 
 describe('AquariumSelectionGuide', () => {
-  let component: AquariumSelectionGuide;
-  let fixture: ComponentFixture<AquariumSelectionGuide>;
+  let spectator: Spectator<AquariumSelectionGuide>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [AquariumSelectionGuide]
-    })
-    .compileComponents();
+  const createComponent = createComponentFactory({
+    component: AquariumSelectionGuide,
+    providers: [
+      {
+        provide: SeoService,
+        useValue: { updateMetadata: jest.fn() }
+      },
+      {
+        provide: PostService,
+        useValue: {
+          getPostPageData: jest.fn().mockReturnValue({
+            post: {
+              title: 'Test',
+              description: 'Desc',
+              image: 'img.png',
+              slug: 'test'
+            },
+            recommended: [],
+            latest: []
+          })
+        }
+      }
+    ]
+  });
 
-    fixture = TestBed.createComponent(AquariumSelectionGuide);
-    component = fixture.componentInstance;
-    await fixture.whenStable();
+  beforeEach(() => {
+    spectator = createComponent();
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
   });
 });
