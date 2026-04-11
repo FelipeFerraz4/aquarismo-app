@@ -1,22 +1,25 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
+import { provideRouter } from '@angular/router';
 import { PrivacyPolicy } from './privacy-policy';
 
 describe('PrivacyPolicy', () => {
-  let component: PrivacyPolicy;
-  let fixture: ComponentFixture<PrivacyPolicy>;
+  let spectator: Spectator<PrivacyPolicy>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [PrivacyPolicy],
-    }).compileComponents();
+  const createComponent = createComponentFactory({
+    component: PrivacyPolicy,
+    providers: [provideRouter([])]
+  });
 
-    fixture = TestBed.createComponent(PrivacyPolicy);
-    component = fixture.componentInstance;
-    await fixture.whenStable();
+  beforeEach(() => {
+    spectator = createComponent();
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
+  });
+
+  it('should set current year on init', () => {
+    const currentYear = new Date().getFullYear();
+    expect(spectator.component.currentYear).toBe(currentYear);
   });
 });
