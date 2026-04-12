@@ -1,20 +1,27 @@
-<swiper-container *ngIf="isBrowser" slides-per-view="1" loop="true" autoplay-delay="5000"
-    autoplay-disable-on-interaction="false" navigation="true" pagination="true" class="hero-swiper">
+@if (isBrowser) {
+<swiper-container slides-per-view="1" loop="true" autoplay-delay="5000" autoplay-disable-on-interaction="false"
+    navigation="true" pagination="true" class="hero-swiper">
 
-    <swiper-slide *ngFor="let slide of slides">
+    @for (slide of slides; track slide) {
+    <swiper-slide>
         <div class="hero-slide" [style.backgroundImage]="'url(' + slide.image + ')'">
             <div class="overlay">
                 <h1>{{ slide.title }}</h1>
                 <p>{{ slide.description }}</p>
 
-                <a *ngIf="slide.button" class="hero-btn" [routerLink]="slide.button.link">
+                @if (slide.button) {
+                <a class="hero-btn" [routerLink]="slide.button.link">
                     {{ slide.button.text }}
                 </a>
+                }
+
             </div>
         </div>
     </swiper-slide>
+    }
 
 </swiper-container>
+}
 
 
 <!-- About Platform -->

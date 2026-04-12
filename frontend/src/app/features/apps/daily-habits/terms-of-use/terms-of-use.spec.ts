@@ -1,23 +1,25 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
+import { provideRouter } from '@angular/router';
 import { TermsOfUse } from './terms-of-use';
 
 describe('TermsOfUse', () => {
-  let component: TermsOfUse;
-  let fixture: ComponentFixture<TermsOfUse>;
+  let spectator: Spectator<TermsOfUse>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [TermsOfUse]
-    })
-    .compileComponents();
+  const createComponent = createComponentFactory({
+    component: TermsOfUse,
+    providers: [provideRouter([])]
+  });
 
-    fixture = TestBed.createComponent(TermsOfUse);
-    component = fixture.componentInstance;
-    await fixture.whenStable();
+  beforeEach(() => {
+    spectator = createComponent();
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
+  });
+
+  it('should set current year on init', () => {
+    const currentYear = new Date().getFullYear();
+    expect(spectator.component.currentYear).toBe(currentYear);
   });
 });

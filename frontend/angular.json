@@ -3,7 +3,10 @@
   "version": 1,
   "cli": {
     "packageManager": "npm",
-    "analytics": "a5837658-2c8f-498d-bda0-c221ef4310b3"
+    "analytics": "a5837658-2c8f-498d-bda0-c221ef4310b3",
+    "schematicCollections": [
+      "angular-eslint"
+    ]
   },
   "newProjectRoot": "projects",
   "projects": {
@@ -23,7 +26,6 @@
           "options": {
             "baseHref": "/",
             "deployUrl": "/",
-
             "browser": "src/main.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
@@ -38,7 +40,9 @@
                 "output": "/assets"
               }
             ],
-            "styles": ["src/styles.scss"],
+            "styles": [
+              "src/styles.scss"
+            ],
             "server": "src/main.server.ts",
             "outputMode": "server",
             "ssr": {
@@ -83,6 +87,15 @@
         },
         "test": {
           "builder": "@angular/build:unit-test"
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }

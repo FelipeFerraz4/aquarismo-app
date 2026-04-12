@@ -9,7 +9,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './terms-of-use.scss',
 })
 export class TermsOfUse implements OnInit {
-  currentYear: number = 0;
+  currentYear = 0;
 
   ngOnInit(): void {
     this.currentYear = new Date().getFullYear();
