@@ -16,4 +16,8 @@ export const articlesRoutes: Routes = [
     path: 'aquarium-glass-bowing-danger',
     loadComponent: () => import('./aquarium-glass-bowing-danger/aquarium-glass-bowing-danger').then((m) => m.AquariumGlassBowingDanger),
   },
+  {
+    path: 'betta-fish-7-care-tips',
+    loadComponent: () => import('./betta-fish-7-care-tips/betta-fish-7-care-tips').then((m) => m.BettaFish7CareTips),
+  }
 ];
