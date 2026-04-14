@@ -2,6 +2,7 @@ import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
 import { SeoService } from '../../../../core/services/seo/seo-service';
 import { PostService } from '../../../../core/services/post/post';
 import { BettaFish7CareTips } from './betta-fish-7-care-tips';
+import { provideRouter } from '@angular/router';
 
 
 describe('BettaFish7CareTips', () => {
@@ -10,6 +11,7 @@ describe('BettaFish7CareTips', () => {
   const createComponent = createComponentFactory({
     component: BettaFish7CareTips,
     providers: [
+      provideRouter([]),
       {
         provide: SeoService,
         useValue: { updateMetadata: jest.fn() }

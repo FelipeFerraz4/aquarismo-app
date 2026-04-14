@@ -58,7 +58,7 @@ export const POST_MOCK: Post[] = [
     date: '13 de Abril de 2026',
     category: 'Cuidados com Peixes',
     slug: 'betta-fish-7-care-tips',
-    readingTime: '8 min',
+    readingTime: '10 min',
     author: 'Felipe Ferraz',
   },
   {

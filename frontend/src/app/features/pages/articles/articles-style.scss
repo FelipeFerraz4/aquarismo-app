@@ -171,8 +171,10 @@
 
     .image-block2 img {
       width: 100%;
-      aspect-ratio: 16 / 9; /* força mesmo formato */
-      object-fit: cover; /* corta sem distorcer */
+      aspect-ratio: 16 / 9;
+      /* força mesmo formato */
+      object-fit: cover;
+      /* corta sem distorcer */
       border-radius: 10px;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
     }
@@ -184,11 +186,18 @@
     }
 
     .image-caption2 {
-      grid-column: span 2; /* faz a legenda ocupar toda largura */
+      grid-column: span 2;
+      /* faz a legenda ocupar toda largura */
       text-align: center;
       font-size: 1rem;
       color: #8fb2c4;
       margin-top: 0.5rem;
+    }
+
+    .link {
+      color: #4fc3f7;
+      text-decoration: none;
+      font-weight: 600;
     }
   }
 }
