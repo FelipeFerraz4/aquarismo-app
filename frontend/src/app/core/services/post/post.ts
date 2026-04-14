@@ -47,4 +47,7 @@ export class PostService {
     return [...categoryLatest, ...generalLatest];
   }
 
+  getAllPosts(): Post[] {
+    return POST_MOCK;
+  }
 }

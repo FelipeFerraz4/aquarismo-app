@@ -3,9 +3,14 @@ import {
   Component,
   CUSTOM_ELEMENTS_SCHEMA,
   Inject,
+  OnInit,
   PLATFORM_ID
 } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { Post } from '../../../../shared/model/types/post';
+import { SeoService } from '../../../../core/services/seo/seo-service';
+import { PostService } from '../../../../core/services/post/post';
+import { LatestPosts } from '../../../../shared/components/post/latest-posts/latest-posts';
 
 @Component({
   selector: 'app-blog-home',
@@ -13,16 +18,23 @@ import { RouterModule } from '@angular/router';
   imports: [
     CommonModule,
     RouterModule,
+    LatestPosts
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './blog-home.html',
   styleUrl: './blog-home.scss',
 })
-export class BlogHome {
+export class BlogHome implements OnInit {
 
   isBrowser: boolean;
 
-  constructor(@Inject(PLATFORM_ID) platformId: object) {
+  latest: Post[] = [];
+
+  constructor(
+    private seo: SeoService,
+    private postService: PostService,
+    @Inject(PLATFORM_ID) platformId: object
+  ) {
     this.isBrowser = isPlatformBrowser(platformId);
   }
 
@@ -55,4 +67,25 @@ export class BlogHome {
       }
     }
   ];
+
+  ngOnInit(): void {
+    this.loadPostData();
+    this.setupSeo();
+  }
+
+  loadPostData() {
+    const allPostsReversed = this.postService.getAllPosts().reverse();
+    this.latest = allPostsReversed.slice(0, 4);
+    console.log("Home: ")
+    console.log(this.latest)
+  }
+
+  setupSeo() {
+    this.seo.updateMetadata({
+      title: "Blue Fox Aquarismo",
+      description: "A Blue Fox Aquarismo é uma plataforma educacional criada para compartilhar conhecimento real e acessível sobre aquários, peixes e plantas aquáticas.",
+      image: this.slides[0].image,
+      url: `https://bluefoxaquarismo.com.br/`,
+    });
+  }
 }
