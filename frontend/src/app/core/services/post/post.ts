@@ -18,7 +18,7 @@ export class PostService {
     };
   }
 
-  getPostBySlug(slug: string): Post | undefined {
+  getPostBySlug(slug: string): Post {
     return SearchPostBySlug(POST_MOCK, slug);
   }
 
