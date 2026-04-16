@@ -11,8 +11,7 @@ import { Post } from '../../../../shared/model/types/post';
 import { SeoService } from '../../../../core/services/seo/seo-service';
 import { PostService } from '../../../../core/services/post/post';
 import { LatestPosts } from '../../../../shared/components/post/latest-posts/latest-posts';
-import { PostByCategory } from '../../../../shared/components/post/post-by-category/post-by-category';
-import { CategoryWithPost } from '../../../../shared/model/types/category';
+import { FeaturedPost } from '../../../../shared/components/post/featured-post/featured-post';
 
 @Component({
   selector: 'app-blog-home',
@@ -21,7 +20,7 @@ import { CategoryWithPost } from '../../../../shared/model/types/category';
     CommonModule,
     RouterModule,
     LatestPosts,
-    PostByCategory
+    FeaturedPost
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './blog-home.html',
@@ -32,7 +31,7 @@ export class BlogHome implements OnInit {
   isBrowser: boolean;
 
   latest: Post[] = [];
-  categoryWithPost: CategoryWithPost[] = [];
+  featuredPosts: Post[] = [];
 
   constructor(
     private seo: SeoService,
@@ -74,7 +73,7 @@ export class BlogHome implements OnInit {
 
   ngOnInit(): void {
     this.loadPostData();
-    this.loadPostByCategory();
+    this.loadFeaturedPost();
     this.setupSeo();
   }
 
@@ -83,24 +82,11 @@ export class BlogHome implements OnInit {
     this.latest = allPostsReversed.slice(0, 4);
   }
 
-  loadPostByCategory() {
-
-    const postByCategory: Post[] = [];
-    // Category: Itens do Aquarismo
-    postByCategory.push(this.postService.getPostBySlug('aquarium-selection-guide'));
-    // Category: Fundamentos do Aquarismo
-    postByCategory.push(this.postService.getPostBySlug('aquarium-size'));
-    // Category: Problemas no Aquarismo
-    postByCategory.push(this.postService.getPostBySlug('aquarium-glass-bowing-danger'));
-    // Category: Cuidados com Peixes
-    postByCategory.push(this.postService.getPostBySlug('betta-fish-7-care-tips'));
-
-    this.categoryWithPost = this.postService.getAllCategories()
-      .map(category => ({
-        ...category,
-        post: postByCategory.find(p => p.category === category.name)
-      }))
-      .filter((entry): entry is CategoryWithPost => !!entry.post);
+  loadFeaturedPost() {
+    this.featuredPosts.push(this.postService.getPostBySlug('betta-fish-7-care-tips'));
+    this.featuredPosts.push(this.postService.getPostBySlug('aquarium-glass-bowing-danger'));
+    this.featuredPosts.push(this.postService.getPostBySlug('aquarium-size'));
+    this.featuredPosts.push(this.postService.getPostBySlug('aquarium-selection-guide'));
   }
 
   setupSeo() {
