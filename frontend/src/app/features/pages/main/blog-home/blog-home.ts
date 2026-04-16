@@ -11,6 +11,8 @@ import { Post } from '../../../../shared/model/types/post';
 import { SeoService } from '../../../../core/services/seo/seo-service';
 import { PostService } from '../../../../core/services/post/post';
 import { LatestPosts } from '../../../../shared/components/post/latest-posts/latest-posts';
+import { PostByCategory } from '../../../../shared/components/post/post-by-category/post-by-category';
+import { CategoryWithPost } from '../../../../shared/model/types/category';
 
 @Component({
   selector: 'app-blog-home',
@@ -18,7 +20,8 @@ import { LatestPosts } from '../../../../shared/components/post/latest-posts/lat
   imports: [
     CommonModule,
     RouterModule,
-    LatestPosts
+    LatestPosts,
+    PostByCategory
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './blog-home.html',
@@ -29,6 +32,7 @@ export class BlogHome implements OnInit {
   isBrowser: boolean;
 
   latest: Post[] = [];
+  categoryWithPost: CategoryWithPost[] = [];
 
   constructor(
     private seo: SeoService,
@@ -70,12 +74,33 @@ export class BlogHome implements OnInit {
 
   ngOnInit(): void {
     this.loadPostData();
+    this.loadPostByCategory();
     this.setupSeo();
   }
 
   loadPostData() {
     const allPostsReversed = this.postService.getAllPosts().reverse();
     this.latest = allPostsReversed.slice(0, 4);
+  }
+
+  loadPostByCategory() {
+
+    const postByCategory: Post[] = [];
+    // Category: Itens do Aquarismo
+    postByCategory.push(this.postService.getPostBySlug('aquarium-selection-guide'));
+    // Category: Fundamentos do Aquarismo
+    postByCategory.push(this.postService.getPostBySlug('aquarium-size'));
+    // Category: Problemas no Aquarismo
+    postByCategory.push(this.postService.getPostBySlug('aquarium-glass-bowing-danger'));
+    // Category: Cuidados com Peixes
+    postByCategory.push(this.postService.getPostBySlug('betta-fish-7-care-tips'));
+
+    this.categoryWithPost = this.postService.getAllCategories()
+      .map(category => ({
+        ...category,
+        post: postByCategory.find(p => p.category === category.name)
+      }))
+      .filter((entry): entry is CategoryWithPost => !!entry.post);
   }
 
   setupSeo() {
