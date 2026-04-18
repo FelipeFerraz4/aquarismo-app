@@ -72,7 +72,6 @@
         justify-content: flex-end;
     }
 
-    /* CORRIGIDO: agora usa h3 */
     h3 {
         color: #fff;
         margin: 0.5rem 0;
@@ -165,6 +164,14 @@
 
     .featured-main {
         height: 280px;
+
+        h3 {
+            font-size: 1.2rem;
+        }
+
+        p {
+            font-size: 0.8rem;
+        }
     }
 
     .featured-card {
