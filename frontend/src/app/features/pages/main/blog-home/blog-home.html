@@ -1,8 +1,8 @@
 @if (isBrowser) {
 <swiper-container slides-per-view="1" loop="true" autoplay-delay="5000" autoplay-disable-on-interaction="false"
-    navigation="true" pagination="true" class="hero-swiper">
+    navigation="true" pagination="true" class="hero-swiper" slides-per-group="1" loop-additional-slides="6">
 
-    @for (slide of slides; track slide) {
+    @for (slide of slides; track slide.id) {
     <swiper-slide>
         <div class="hero-slide" [style.backgroundImage]="'url(' + slide.image + ')'">
             <div class="overlay">
