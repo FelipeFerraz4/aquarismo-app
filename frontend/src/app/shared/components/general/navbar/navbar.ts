@@ -11,7 +11,7 @@ import { AuthService } from '../../../../core/services/auth/auth-service';
   styleUrl: './navbar.scss',
 })
 export class Navbar {
-  private auth = inject(AuthService);
+  protected auth = inject(AuthService);
 
   menuOpen = false;
   artigosOpen = false;

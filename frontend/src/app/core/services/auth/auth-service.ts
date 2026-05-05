@@ -14,7 +14,7 @@ export class AuthService {
 
     if (this.isBrowser) {
       this.kc = new Keycloak({
-        url: 'http://localhost:8080',
+        url: 'http://localhost:8080/auth/',
         realm: 'BlueFox',
         clientId: 'aquarismo-web',
       });
