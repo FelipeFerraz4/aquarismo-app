@@ -22,7 +22,9 @@ export class AuthService {
   }
 
   async init(): Promise<boolean> {
-    if (!this.kc) return false;
+    if (!this.isBrowser || !this.kc) {
+      return false;
+    }
 
     return await this.kc.init({
       onLoad: 'check-sso',
@@ -35,7 +37,7 @@ export class AuthService {
   }
 
   logout() {
-    if (!this.kc) return;
+    if (!this.kc || !this.isBrowser) return;
 
     this.kc.logout({
       redirectUri: window.location.origin,
@@ -44,6 +46,18 @@ export class AuthService {
 
   getToken(): string | undefined {
     return this.kc?.token;
+  }
+
+  async getValidToken(): Promise<string | undefined> {
+    if (!this.kc) return undefined;
+
+    try {
+      await this.kc.updateToken(30); // renova se faltar <30s
+      return this.kc.token;
+    } catch {
+      this.login();
+      return undefined;
+    }
   }
 
   isLoggedIn(): boolean {
