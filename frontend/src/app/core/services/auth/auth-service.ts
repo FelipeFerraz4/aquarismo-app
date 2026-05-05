@@ -1,29 +1,56 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import Keycloak from 'keycloak-js';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  private kc?: Keycloak;
+  private isBrowser: boolean;
 
-  // public kc: Keycloak = new Keycloak({
-  //   url: 'http://localhost:8080',
-  //   realm: 'BlueFox',
-  //   clientId: 'aquarismo-web',
-  // });
+  constructor(@Inject(PLATFORM_ID) platformId: object) {
+    this.isBrowser = isPlatformBrowser(platformId);
 
-  // public init(): Promise<any> {
-  //   return new Promise((resolve, reject) => {
-  //     this.kc.init({
-  //       onLoad: 'login-required',
-  //       checkLoginIframe: false,
-  //       // Configuraões necessárias para redirecionamento
-  //       redirectUri: `${window.location.origin}/`,
-  //       silentCheckSsoRedirectUri: `${window.location.origin}/silent-check-sso.html`,
-  //     })
-  //     .then(() => resolve())
-  //     .catch(reject);
-  //   });
-  // }
+    if (this.isBrowser) {
+      this.kc = new Keycloak({
+        url: 'http://localhost:8080',
+        realm: 'BlueFox',
+        clientId: 'aquarismo-web',
+      });
+    }
+  }
 
+  async init(): Promise<boolean> {
+    if (!this.kc) return false;
+
+    return await this.kc.init({
+      onLoad: 'check-sso',
+      checkLoginIframe: false,
+    });
+  }
+
+  login() {
+    this.kc?.login();
+  }
+
+  logout() {
+    if (!this.kc) return;
+
+    this.kc.logout({
+      redirectUri: window.location.origin,
+    });
+  }
+
+  getToken(): string | undefined {
+    return this.kc?.token;
+  }
+
+  isLoggedIn(): boolean {
+    return !!this.kc?.authenticated;
+  }
+
+  getUsername(): string | undefined {
+    return this.kc?.tokenParsed?.['preferred_username'] as string;
+  }
 }
