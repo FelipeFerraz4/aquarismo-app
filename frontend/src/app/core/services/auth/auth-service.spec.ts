@@ -9,7 +9,7 @@ jest.mock('keycloak-js', () => {
     logout: jest.fn(),
     token: 'fake-token',
     authenticated: true,
-    tokenParsed: { preferred_username: 'test-user' },
+    tokenParsed: { preferred_username: 'test-user', given_name: 'user', family_name: 'test' },
   }));
 });
 
@@ -48,14 +48,26 @@ describe('AuthService', () => {
     expect(service.getUsername()).toBe('test-user');
   });
 
+  it('should return first name', () => {
+    expect(service.getFirstName()).toBe('user');
+  });
+
+  it('should return last name', () => {
+    expect(service.getLastName()).toBe('test');
+  });
+
+  it('should return full name', () => {
+    expect(service.getUserFullName()).toBe('user test');
+  });
+
   it('should call login', () => {
-    const spy = jest.spyOn((service as any).kc, 'login');
+    const spy = jest.spyOn(service['kc'] as unknown as { login: () => void }, 'login');
     service.login();
     expect(spy).toHaveBeenCalled();
   });
 
   it('should call logout', () => {
-    const spy = jest.spyOn((service as any).kc, 'logout');
+    const spy = jest.spyOn(service['kc'] as unknown as { logout: () => void }, 'logout');
     service.logout();
     expect(spy).toHaveBeenCalled();
   });

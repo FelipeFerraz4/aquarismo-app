@@ -55,20 +55,24 @@
 
         <div class="navbar-actions">
           <!-- NÃO LOGADO -->
-          <button *ngIf="!auth.isLoggedIn()" (click)="login()" class="login-btn">
+          @if (!auth.isLoggedIn()) {
+          <button (click)="login()" class="login-btn">
             Login
           </button>
+          }
 
           <!-- LOGADO -->
-          <div *ngIf="auth.isLoggedIn()" class="user-info">
+          @if (auth.isLoggedIn()) {
+          <div class="user-info">
             <span class="username">
-              Olá, {{ auth.getUsername() }}
+              Olá, {{ auth.getUserFullName() }}
             </span>
 
             <button (click)="logout()" class="logout-btn">
               Sair
             </button>
           </div>
+          }
         </div>
       </div>
     </nav>
