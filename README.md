@@ -53,6 +53,7 @@ blue-fox-aquarismo/
 │   │   │   ├── apps/      # Micro-aplicações integradas (ex: Daily Habits)
 │   │   │   └── pages/     # Artigos técnicos e páginas estáticas
 ├── shared/        # Componentes, modelos e tipos reutilizáveis
+├── environments/  # Configurações para diferentes ambientes.
 └── assets/        # Recursos multimídia e arquivos de tradução (i18n)
 ├── .dockerignore
 ├── .gitignore
