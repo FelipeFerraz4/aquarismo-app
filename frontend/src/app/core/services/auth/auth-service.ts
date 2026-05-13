@@ -14,9 +14,9 @@ export class AuthService {
 
     if (this.isBrowser) {
       this.kc = new Keycloak({
-        url: 'http://localhost:8080/auth/',
-        realm: 'BlueFox',
-        clientId: 'aquarismo-web',
+        url: 'https://bluefoxaquarismo.space/auth/',
+        realm: 'Blue_Fox_Group',
+        clientId: 'blue-fox-aquariums',
       });
     }
   }
@@ -65,6 +65,28 @@ export class AuthService {
   }
 
   getUsername(): string | undefined {
-    return this.kc?.tokenParsed?.['preferred_username'] as string;
+    const claims = this.kc?.tokenParsed;
+    return claims?.['preferred_username'] as string;
+  }
+
+  getFirstName(): string | undefined {
+    const claims = this.kc?.tokenParsed;
+    return claims?.['given_name'] as string;
+  }
+
+  getLastName(): string | undefined {
+    const claims = this.kc?.tokenParsed;
+    return claims?.['family_name'] as string;
+  }
+
+  getUserFullName(): string | undefined {
+    const claims = this.kc?.tokenParsed;
+    if (!claims) return undefined;
+
+    const fn = (claims['given_name'] as string) || '';
+    const ln = (claims['family_name'] as string) || '';
+
+    const fullName = `${fn} ${ln}`.trim();
+    return fullName || undefined;
   }
 }
