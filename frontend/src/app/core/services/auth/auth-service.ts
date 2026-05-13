@@ -1,6 +1,7 @@
 import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import Keycloak from 'keycloak-js';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
@@ -8,15 +9,16 @@ import Keycloak from 'keycloak-js';
 export class AuthService {
   private kc?: Keycloak;
   private isBrowser: boolean;
+  private keycloakConfig = environment.keycloak;
 
   constructor(@Inject(PLATFORM_ID) platformId: object) {
     this.isBrowser = isPlatformBrowser(platformId);
 
     if (this.isBrowser) {
       this.kc = new Keycloak({
-        url: 'https://bluefoxaquarismo.space/auth/',
-        realm: 'Blue_Fox_Group',
-        clientId: 'blue-fox-aquariums',
+        url: this.keycloakConfig.url,
+        realm: this.keycloakConfig.realm,
+        clientId: this.keycloakConfig.clientId,
       });
     }
   }
