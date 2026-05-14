@@ -43,6 +43,7 @@ export class BlogHome implements OnInit {
 
   slides = [
     {
+      id: 1,
       image: 'assets/images/aquariums/aquarium5.webp',
       title: 'Aprenda sobre Aquarismo',
       description: 'Guias práticos e experiências reais.',
@@ -52,6 +53,7 @@ export class BlogHome implements OnInit {
       }
     },
     {
+      id: 2,
       image: 'assets/images/aquariums/maintenance-aquarium.webp',
       title: 'Monte seu Aquário com Segurança',
       description: 'Evite erros comuns e cuide melhor dos peixes.',
@@ -61,6 +63,37 @@ export class BlogHome implements OnInit {
       }
     },
     {
+      id: 3,
+      image: 'assets/images/aquariums/learning-aquariums.webp',
+      title: 'Divirta-se com as Ferramentas Educativas sobre Aquarismo',
+      description: 'Aprenda de forma interativa.',
+      button: {
+        text: 'Ver Ferramentas',
+        link: '/articles/tools'
+      }
+    },
+    {
+      id: 4,
+      image: 'assets/images/aquariums/aquarium5.webp',
+      title: 'Aprenda sobre Aquarismo',
+      description: 'Guias práticos e experiências reais.',
+      button: {
+        text: 'Ver Artigos',
+        link: '/articles/guides'
+      }
+    },
+    {
+      id: 5,
+      image: 'assets/images/aquariums/maintenance-aquarium.webp',
+      title: 'Monte seu Aquário com Segurança',
+      description: 'Evite erros comuns e cuide melhor dos peixes.',
+      button: {
+        text: 'Ver Artigos',
+        link: '/articles/montage'
+      }
+    },
+    {
+      id: 6,
       image: 'assets/images/aquariums/learning-aquariums.webp',
       title: 'Divirta-se com as Ferramentas Educativas sobre Aquarismo',
       description: 'Aprenda de forma interativa.',

@@ -10,7 +10,7 @@
         <div class="featured-layout">
 
             <a class="featured-main" [routerLink]="['/articles', featuredPosts[0].slug]">
-                <img [src]="featuredPosts[0].image" [alt]="featuredPosts[0].title" loading="lazy" />
+                <img [src]="featuredPosts[0].image" [alt]="featuredPosts[0].title" loading="eager" />
 
                 <div class="overlay">
                     <span class="category-tag">

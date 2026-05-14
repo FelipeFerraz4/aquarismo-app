@@ -116,6 +116,7 @@
 .navbar-actions {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 1rem;
 }
 
@@ -140,6 +141,7 @@
   font-size: 0.85rem;
   text-decoration: none;
   font-weight: 600;
+  border: none;
 
   &:hover {
     background: #38b3ea;
@@ -153,6 +155,31 @@
   border: none;
   color: #dceaf2;
   font-size: 1.5rem;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.username {
+  font-size: 0.9rem;
+  color: #fff;
+}
+
+.logout-btn {
+  background: transparent;
+  border-radius: 20px;
+  border: 1px solid #fff;
+  padding: 4px 8px;
+  cursor: pointer;
+  color: #fff;
+
+  &:hover {
+    background: #4fc3f7;
+    border-color: #4fc3f7;
+  }
 }
 
 @media (max-width: 900px) {
@@ -184,7 +211,7 @@
   .navbar-actions {
     width: 100%;
     flex-direction: column;
-    align-items: stretch;
+    align-items: center;
   }
 
   .search-input {

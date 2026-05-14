@@ -53,7 +53,27 @@
       <div class="navbar-actions">
         <input type="search" placeholder="Pesquisar no blog..." class="search-input" />
 
-        <a routerLink="/login" class="login-btn">Login</a>
+        <div class="navbar-actions">
+          <!-- NÃO LOGADO -->
+          @if (!auth.isLoggedIn()) {
+          <button (click)="login()" class="login-btn">
+            Login
+          </button>
+          }
+
+          <!-- LOGADO -->
+          @if (auth.isLoggedIn()) {
+          <div class="user-info">
+            <span class="username">
+              Olá, {{ auth.getUserFullName() }}
+            </span>
+
+            <button (click)="logout()" class="logout-btn">
+              Sair
+            </button>
+          </div>
+          }
+        </div>
       </div>
     </nav>
   </div>
