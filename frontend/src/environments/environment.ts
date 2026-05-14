@@ -3,6 +3,6 @@ export const environment = {
     keycloak: {
         url: 'http://localhost:8080/auth/',
         realm: 'Blue_Fox_Group',
-        clientId: 'blue-fox-aquariums',
+        clientId: 'blue-fox-aquariums-local',
     },
 };
