@@ -1,23 +1,43 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
+import { SeoService } from '../../../../core/services/seo/seo-service';
+import { PostService } from '../../../../core/services/post/post';
 import { HowToChooseAquariumFilter } from './how-to-choose-aquarium-filter';
+import { DEFAULT_POST } from '../../../../shared/model/mocks/post-mock';
 
 describe('HowToChooseAquariumFilter', () => {
-  let component: HowToChooseAquariumFilter;
-  let fixture: ComponentFixture<HowToChooseAquariumFilter>;
+  let spectator: Spectator<HowToChooseAquariumFilter>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [HowToChooseAquariumFilter]
-    })
-    .compileComponents();
+  const createComponent = createComponentFactory({
+    component: HowToChooseAquariumFilter,
+    providers: [
+      {
+        provide: SeoService,
+        useValue: { updateMetadata: jest.fn() }
+      },
+      {
+        provide: PostService,
+        useValue: {
+          getPostPageData: jest.fn().mockReturnValue({
+            post: {
+              ...DEFAULT_POST,
+              title: 'Test',
+              description: 'Desc',
+              image: 'img.png',
+              slug: 'test',
+            },
+            recommended: [],
+            latest: []
+          })
+        }
+      }
+    ]
+  });
 
-    fixture = TestBed.createComponent(HowToChooseAquariumFilter);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+  beforeEach(() => {
+    spectator = createComponent();
   });
 
   it('should create', () => {
-    expect(component).toBeTruthy();
+    expect(spectator.component).toBeTruthy();
   });
 });

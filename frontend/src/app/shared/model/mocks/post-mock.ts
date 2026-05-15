@@ -66,7 +66,7 @@ export const POST_MOCK: Post[] = [
     title: 'Filtro de Aquário: Como Escolher o Melhor Tipo para Você',
     description:
       'Hang-on, Canister ou Sump? Descubra qual é o modelo ideal para seu projeto e não caia no mito do filtro que dispensa a TPA.',
-    image: 'assets/images/equipment/aquarium_filter_types_comparison1.webp',
+    image: 'assets/images/equipment/aquarium-filter-types-comparison2.webp',
     date: '15 de Maio de 2026',
     category: 'Itens do Aquarismo',
     slug: 'how-to-choose-aquarium-filter',
