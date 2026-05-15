@@ -60,5 +60,17 @@ export const POST_MOCK: Post[] = [
     slug: 'betta-fish-7-care-tips',
     readingTime: '10 min',
     author: 'Felipe Ferraz',
+  },
+  {
+    id: '5',
+    title: 'Filtro de Aquário: Como Escolher o Melhor Tipo para Você',
+    description:
+      'Hang-on, Canister ou Sump? Descubra qual é o modelo ideal para seu projeto e não caia no mito do filtro que dispensa a TPA.',
+    image: 'assets/images/equipment/aquarium_filter_types_comparison1.webp',
+    date: '15 de Maio de 2026',
+    category: 'Itens do Aquarismo',
+    slug: 'how-to-choose-aquarium-filter',
+    readingTime: '12 min',
+    author: 'Felipe Ferraz',
   }
 ];
