@@ -116,10 +116,11 @@ export class BlogHome implements OnInit {
   }
 
   loadFeaturedPost() {
+    this.featuredPosts.push(this.postService.getPostBySlug('how-to-choose-aquarium-filter'));
     this.featuredPosts.push(this.postService.getPostBySlug('betta-fish-7-care-tips'));
     this.featuredPosts.push(this.postService.getPostBySlug('aquarium-glass-bowing-danger'));
     this.featuredPosts.push(this.postService.getPostBySlug('aquarium-size'));
-    this.featuredPosts.push(this.postService.getPostBySlug('aquarium-selection-guide'));
+    // this.featuredPosts.push(this.postService.getPostBySlug('aquarium-selection-guide'));
   }
 
   setupSeo() {

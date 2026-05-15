@@ -19,5 +19,9 @@ export const articlesRoutes: Routes = [
   {
     path: 'betta-fish-7-care-tips',
     loadComponent: () => import('./betta-fish-7-care-tips/betta-fish-7-care-tips').then((m) => m.BettaFish7CareTips),
+  },
+  {
+    path: 'how-to-choose-aquarium-filter',
+    loadComponent: () => import('./how-to-choose-aquarium-filter/how-to-choose-aquarium-filter').then((m) => m.HowToChooseAquariumFilter),
   }
 ];
