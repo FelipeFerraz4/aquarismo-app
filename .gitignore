@@ -14,7 +14,9 @@ frontend/node_modules/
 /yarn.lock
 
 # Environment files
-/.env
+.env
+.env.dev
+.env.prod
 
 # Angular CLI and build artefacts
 /.angular-cli.json

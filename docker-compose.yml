@@ -1,4 +1,50 @@
 services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: aquarismo-db
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_NAME}
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    volumes:
+      - aquarismo_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U ${DB_USER} -d ${DB_NAME}" ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+    networks:
+      - aquarismo-network
+
+  backend:
+    build:
+      context: ./Backend
+      dockerfile: Dockerfile
+    container_name: aquarismo-backend
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE}
+      SPRING_DATASOURCE_URL: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}
+      SPRING_DATASOURCE_USERNAME: ${DB_USER}
+      SPRING_DATASOURCE_PASSWORD: ${DB_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}
+      PASSWORD_SECRET: ${PASSWORD_SECRET}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - aquarismo-network
+    ports:
+      - "${EXPOSE_BACKEND_PORT:-8080}:8080"
+
   frontend:
     container_name: aquarismo-frontend
     build:
@@ -7,7 +53,13 @@ services:
       - "4000"
     networks:
       - infra-net
+      - aquarismo-network
 
 networks:
+  aquarismo-network:
+    driver: bridge
   infra-net:
     external: true
+
+volumes:
+  aquarismo_postgres_data:
