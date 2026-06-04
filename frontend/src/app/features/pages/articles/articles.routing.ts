@@ -27,5 +27,9 @@ export const articlesRoutes: Routes = [
   {
     path: 'aquarium-filtration-guide',
     loadComponent: () => import('./aquarium-filtration-guide/aquarium-filtration-guide').then((m) => m.AquariumFiltrationGuide),
+  },
+  {
+    path: 'aquarium-tpa-guide',
+    loadComponent: () => import('./aquarium-tpa-guide/aquarium-tpa-guide').then((m) => m.AquariumTpaGuide),
   }
 ];

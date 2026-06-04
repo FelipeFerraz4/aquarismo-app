@@ -112,7 +112,7 @@ export class BlogHome implements OnInit {
 
   loadPostData() {
     const allPostsReversed = this.postService.getAllPosts().reverse();
-    this.latest = allPostsReversed.slice(0, 4);
+    this.latest = allPostsReversed.slice(0, 6);
   }
 
   loadFeaturedPost() {
