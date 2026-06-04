@@ -31,5 +31,9 @@ export const articlesRoutes: Routes = [
   {
     path: 'aquarium-tpa-guide',
     loadComponent: () => import('./aquarium-tpa-guide/aquarium-tpa-guide').then((m) => m.AquariumTpaGuide),
-  }
+  },
+  {
+    path: 'tetra-fish-guide',
+    loadComponent: () => import('./tetra-fish-guide/tetra-fish-guide').then((m) => m.TetraFishGuide),
+  },
 ];
