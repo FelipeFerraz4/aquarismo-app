@@ -116,19 +116,19 @@ export const POST_MOCK: Post[] = [
     slug: 'tetra-fish-guide',
     readingTime: '10 min',
     author: 'Felipe Ferraz',
-    published: true
+    published: false
   },
   {
     id: '9',
     title: 'Aquário Comunitário: Guia Passo a Passo para Iniciantes',
     description:
       'Você sonha em montar um aquário comunitário? Veja o guia prático para iniciantes com dicas de filtragem, tamanho ideal do tanque e combinação de fauna.',
-    image: 'assets/images/fish/community-aquarium.webp',
+    image: 'assets/images/aquariums/aquarium8.webp',
     date: '28 de Junho de 2026',
     category: 'Fundamentos do Aquarismo',
     slug: 'community-aquarium-guide',
     readingTime: '12 min',
     author: 'Felipe Ferraz',
-    published: false
+    published: true
   }
 ];
