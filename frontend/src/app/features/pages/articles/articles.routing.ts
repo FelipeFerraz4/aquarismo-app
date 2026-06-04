@@ -36,4 +36,8 @@ export const articlesRoutes: Routes = [
     path: 'tetra-fish-guide',
     loadComponent: () => import('./tetra-fish-guide/tetra-fish-guide').then((m) => m.TetraFishGuide),
   },
+  {
+    path: 'community-aquarium-guide',
+    loadComponent: () => import('./community-aquarium-guide/community-aquarium-guide').then((m) => m.CommunityAquariumGuide),
+  },
 ];

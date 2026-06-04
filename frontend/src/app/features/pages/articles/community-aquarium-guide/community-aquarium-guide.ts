@@ -7,13 +7,13 @@ import { SeoService } from '../../../../core/services/seo/seo-service';
 import { PostService } from '../../../../core/services/post/post';
 
 @Component({
-  selector: 'app-tetra-fish-guide',
+  selector: 'app-community-aquarium-guide',
   standalone: true,
   imports: [PostHeaderType1, RelatedPosts, RouterLink],
-  templateUrl: './tetra-fish-guide.html',
-  styleUrls: ['./tetra-fish-guide.scss', '../articles-style.scss'],
+  templateUrl: './community-aquarium-guide.html',
+  styleUrls: ['./community-aquarium-guide.scss', '../articles-style.scss'],
 })
-export class TetraFishGuide implements OnInit {
+export class CommunityAquariumGuide implements OnInit {
   currentPost?: Post;
   recommended: Post[] = [];
   latest: Post[] = [];
@@ -24,7 +24,7 @@ export class TetraFishGuide implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.loadPostData('tetra-fish-guide', ['4', '6']);
+    this.loadPostData('community-aquarium-guide', ['4', '8']);
 
     this.setupSeo();
   }
