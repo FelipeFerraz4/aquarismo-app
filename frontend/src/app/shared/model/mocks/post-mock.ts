@@ -72,5 +72,17 @@ export const POST_MOCK: Post[] = [
     slug: 'how-to-choose-aquarium-filter',
     readingTime: '12 min',
     author: 'Felipe Ferraz',
+  },
+  {
+    id: '6',
+    title: 'Filtragem no Aquário: Guia Prático de Todos os Tipos',
+    description:
+      'Entenda a diferença entre as filtragens mecânica, biológica, química e UV e aprenda a combiná-las para manter a água do seu tanque sempre saudável.',
+    image: 'assets/images/equipment/aquarium-filtration.webp',
+    date: '4 de Junho de 2026',
+    category: 'Fundamentos do Aquarismo',
+    slug: 'aquarium-filtration-guide',
+    readingTime: '12 min',
+    author: 'Felipe Ferraz',
   }
 ];
