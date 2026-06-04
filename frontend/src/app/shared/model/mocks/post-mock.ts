@@ -79,7 +79,7 @@ export const POST_MOCK: Post[] = [
     description:
       'Entenda a diferença entre as filtragens mecânica, biológica, química e UV e aprenda a combiná-las para manter a água do seu tanque sempre saudável.',
     image: 'assets/images/equipment/aquarium-filtration.webp',
-    date: '4 de Junho de 2026',
+    date: '7 de Junho de 2026',
     category: 'Fundamentos do Aquarismo',
     slug: 'aquarium-filtration-guide',
     readingTime: '12 min',
@@ -95,6 +95,18 @@ export const POST_MOCK: Post[] = [
     category: 'Fundamentos do Aquarismo',
     slug: 'aquarium-tpa-guide',
     readingTime: '12 min',
+    author: 'Felipe Ferraz',
+  },
+  {
+    id: '8',
+    title: 'Peixes Tetra: O que Você Precisa Saber Antes de Comprar',
+    description:
+      'Pensando em comprar peixes Tetra? Descubra o que você precisa saber sobre o comportamento em cardume, tamanho do aquário e parâmetros da água.',
+    image: 'assets/images/fish/tetra-fish-guide.webp',
+    date: '21 de Abril de 2026',
+    category: 'Cuidados com Peixes',
+    slug: 'tetra-fish-guide',
+    readingTime: '10 min',
     author: 'Felipe Ferraz',
   }
 ];
