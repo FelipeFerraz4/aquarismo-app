@@ -116,7 +116,7 @@ export const POST_MOCK: Post[] = [
     slug: 'tetra-fish-guide',
     readingTime: '10 min',
     author: 'Felipe Ferraz',
-    published: false
+    published: true
   },
   {
     id: '9',
