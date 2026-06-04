@@ -10,6 +10,7 @@ export const DEFAULT_POST: Post = {
   slug: 'aquarium-selection-guide',
   readingTime: '8 min',
   author: 'Felipe Ferraz',
+  published: true
 };
 
 export const POST_MOCK: Post[] = [
@@ -24,6 +25,7 @@ export const POST_MOCK: Post[] = [
     slug: 'aquarium-selection-guide',
     readingTime: '8 min',
     author: 'Felipe Ferraz',
+    published: true
   },
   {
     id: '2',
@@ -36,6 +38,7 @@ export const POST_MOCK: Post[] = [
     slug: 'aquarium-size',
     readingTime: '12 min',
     author: 'Felipe Ferraz',
+    published: true
   },
   {
     id: '3',
@@ -48,6 +51,7 @@ export const POST_MOCK: Post[] = [
     slug: 'aquarium-glass-bowing-danger',
     readingTime: '8 min',
     author: 'Felipe Ferraz',
+    published: true
   },
   {
     id: '4',
@@ -60,6 +64,7 @@ export const POST_MOCK: Post[] = [
     slug: 'betta-fish-7-care-tips',
     readingTime: '10 min',
     author: 'Felipe Ferraz',
+    published: true
   },
   {
     id: '5',
@@ -72,6 +77,7 @@ export const POST_MOCK: Post[] = [
     slug: 'how-to-choose-aquarium-filter',
     readingTime: '12 min',
     author: 'Felipe Ferraz',
+    published: true
   },
   {
     id: '6',
@@ -84,6 +90,7 @@ export const POST_MOCK: Post[] = [
     slug: 'aquarium-filtration-guide',
     readingTime: '12 min',
     author: 'Felipe Ferraz',
+    published: false
   },
   {
     id: '7',
@@ -96,18 +103,20 @@ export const POST_MOCK: Post[] = [
     slug: 'aquarium-tpa-guide',
     readingTime: '12 min',
     author: 'Felipe Ferraz',
+    published: false
   },
   {
     id: '8',
     title: 'Peixes Tetra: O que Você Precisa Saber Antes de Comprar',
     description:
       'Pensando em comprar peixes Tetra? Descubra o que você precisa saber sobre o comportamento em cardume, tamanho do aquário e parâmetros da água.',
-    image: 'assets/images/fish/tetra-fish-guide.webp',
+    image: 'assets/images/fish/tetra-fish.webp',
     date: '21 de Junho de 2026',
     category: 'Cuidados com Peixes',
     slug: 'tetra-fish-guide',
     readingTime: '10 min',
     author: 'Felipe Ferraz',
+    published: false
   },
   {
     id: '9',
@@ -120,5 +129,6 @@ export const POST_MOCK: Post[] = [
     slug: 'community-aquarium-guide',
     readingTime: '12 min',
     author: 'Felipe Ferraz',
+    published: false
   }
 ];

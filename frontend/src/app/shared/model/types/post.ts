@@ -8,6 +8,7 @@ export interface Post {
   slug: string;
   readingTime: string;
   author: string;
+  published: boolean;
 }
 
 export function SearchPostById(posts: Post[], id: string): Post {

@@ -34,6 +34,7 @@ export class PostService {
     const allPostsReversed = [...POST_MOCK]
       .filter((p) => p.id !== currentPost.id)
       .filter((p) => !recommendedIds.includes(p.id))
+      .filter((p) => p.published)
       .reverse();
 
     const categoryLatest = allPostsReversed
