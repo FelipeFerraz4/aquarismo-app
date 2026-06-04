@@ -103,10 +103,22 @@ export const POST_MOCK: Post[] = [
     description:
       'Pensando em comprar peixes Tetra? Descubra o que você precisa saber sobre o comportamento em cardume, tamanho do aquário e parâmetros da água.',
     image: 'assets/images/fish/tetra-fish-guide.webp',
-    date: '21 de Abril de 2026',
+    date: '21 de Junho de 2026',
     category: 'Cuidados com Peixes',
     slug: 'tetra-fish-guide',
     readingTime: '10 min',
+    author: 'Felipe Ferraz',
+  },
+  {
+    id: '9',
+    title: 'Aquário Comunitário: Guia Passo a Passo para Iniciantes',
+    description:
+      'Você sonha em montar um aquário comunitário? Veja o guia prático para iniciantes com dicas de filtragem, tamanho ideal do tanque e combinação de fauna.',
+    image: 'assets/images/fish/community-aquarium.webp',
+    date: '28 de Junho de 2026',
+    category: 'Fundamentos do Aquarismo',
+    slug: 'community-aquarium-guide',
+    readingTime: '12 min',
     author: 'Felipe Ferraz',
   }
 ];
