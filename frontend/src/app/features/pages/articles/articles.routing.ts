@@ -23,5 +23,9 @@ export const articlesRoutes: Routes = [
   {
     path: 'how-to-choose-aquarium-filter',
     loadComponent: () => import('./how-to-choose-aquarium-filter/how-to-choose-aquarium-filter').then((m) => m.HowToChooseAquariumFilter),
+  },
+  {
+    path: 'aquarium-filtration-guide',
+    loadComponent: () => import('./aquarium-filtration-guide/aquarium-filtration-guide').then((m) => m.AquariumFiltrationGuide),
   }
 ];
