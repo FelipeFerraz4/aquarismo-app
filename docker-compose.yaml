@@ -1,0 +1,20 @@
+services:
+  frontend:
+    container_name: aquarismo-frontend
+    restart: unless-stopped
+    build:
+      context: ./frontend
+    expose:
+      - "4000"
+    networks:
+      - infra-net
+      - blog-api-net
+      - aquarismo-net
+
+networks:
+  infra-net:
+    external: true
+  blog-api-net:
+    external: true
+  aquarismo-net:
+    driver: bridge
