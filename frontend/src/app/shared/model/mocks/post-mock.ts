@@ -129,6 +129,6 @@ export const POST_MOCK: Post[] = [
     slug: 'community-aquarium-guide',
     readingTime: '12 min',
     author: 'Felipe Ferraz',
-    published: true
+    published: false
   }
 ];

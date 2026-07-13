@@ -57,4 +57,11 @@ export class PostService {
   getAllCategories(): Category[] {
     return CATEGORY_MOCK;
   }
+
+  getLastPost(): Post {
+    const allPosts = this.getAllPosts();
+    if (!allPosts.length) throw new Error('No posts found');
+
+    return POST_MOCK[POST_MOCK.length - 1];
+  }
 }

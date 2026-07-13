@@ -32,6 +32,7 @@ export class BlogHome implements OnInit {
 
   latest: Post[] = [];
   featuredPosts: Post[] = [];
+  lastPost: Post | undefined = undefined;
 
   constructor(
     private seo: SeoService,
@@ -113,6 +114,7 @@ export class BlogHome implements OnInit {
   loadPostData() {
     const allPostsReversed = this.postService.getAllPosts().reverse();
     this.latest = allPostsReversed.filter(post => post.published).slice(0, 6);
+    this.lastPost = this.postService.getLastPost();
   }
 
   loadFeaturedPost() {

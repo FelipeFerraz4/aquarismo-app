@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import { PostHeaderType1 } from '../../../../shared/components/post/post-header-type1/post-header-type1';
 import { RelatedPosts } from '../../../../shared/components/post/related-posts/related-posts';
 import { Post } from '../../../../shared/model/types/post';
@@ -9,7 +8,7 @@ import { PostService } from '../../../../core/services/post/post';
 @Component({
   selector: 'app-aquarium-tpa-guide',
   standalone: true,
-  imports: [PostHeaderType1, RelatedPosts, RouterLink],
+  imports: [PostHeaderType1, RelatedPosts],
   templateUrl: './aquarium-tpa-guide.html',
   styleUrls: ['./aquarium-tpa-guide.scss', '../articles-style.scss'],
 })
