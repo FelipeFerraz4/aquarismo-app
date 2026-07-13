@@ -18,7 +18,7 @@ export const POST_MOCK: Post[] = [
     id: '1',
     title: 'Guia Completo: Como Escolher o Aquário Ideal para Seu Projeto',
     description:
-      'Descubra como escolher o aquário ideal para o seu projeto, entendendo os diferentes materiais, estruturas e fatores que influenciam diretamente na estética, durabilidade e no bem-estar dos peixes.',
+      'Descubra como escolher o aquário ideal para seu projeto. Entenda os materiais e fatores que influenciam diretamente na estética, durabilidade e bem-estar dos peixes.',
     image: 'assets/images/aquariums/aquariums2.webp',
     date: '24 de Março de 2026',
     category: 'Itens do Aquarismo',
