@@ -1,26 +1,30 @@
+import { Status } from './status';
+
 export interface Post {
   id: string;
   title: string;
   description: string;
-  image: string;
-  date: string;
-  category: string;
+  imageUrl: string;      
   slug: string;
-  readingTime: string;
-  author: string;
+  readingTime: string;  
   published: boolean;
+  publishedAt?: string;
+  views: number;
+  status: Status;
+  
+  authorId: string;      
+  categoryId: string;   
+    
+  authorName: string;    
+  categoryName: string;  
+
+  createdAt?: string;
+  updatedAt?: string;
 }
 
-export function SearchPostById(posts: Post[], id: string): Post {
-  const post = posts.find((post) => post.id === id)!;
-  return post;
-}
-
-export function SearchPostBySlug(posts: Post[], slug: string): Post {
-  const post = posts.find((post) => post.slug === slug)!;
-  return post;
-}
-
+/**
+ * Estrutura agregada necessária para montar a tela de detalhes de um artigo
+ */
 export interface PostPageData {
   post: Post;
   recommended: Post[];
