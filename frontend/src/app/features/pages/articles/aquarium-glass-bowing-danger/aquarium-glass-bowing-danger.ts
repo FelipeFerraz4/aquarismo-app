@@ -3,7 +3,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { Inject, PLATFORM_ID, AfterViewInit } from '@angular/core';
 import { PostHeaderType1 } from '../../../../shared/components/post/post-header-type1/post-header-type1';
 import { RelatedPosts } from '../../../../shared/components/post/related-posts/related-posts';
-import { Post } from '../../../../shared/model/types/post';
+import { Post, PostPageData } from '../../../../shared/model/types/post';
 import { SeoService } from '../../../../core/services/seo/seo-service';
 import { PostService } from '../../../../core/services/post/post';
 
@@ -29,7 +29,7 @@ export class AquariumGlassBowingDanger implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit(): void {
-    this.loadPostData('aquarium-glass-bowing-danger', ['1', '2']);
+    this.loadPostData('aquarium-glass-bowing-danger');
 
     this.setupSeo();
   }
@@ -53,21 +53,24 @@ export class AquariumGlassBowingDanger implements OnInit, AfterViewInit {
     this.observer.observe(videoEl);
   }
 
-  loadPostData(slug: string, recommendedIds: string[]) {
-    const postData = this.postService.getPostPageData(slug, recommendedIds);
-
-    if (!postData) return;
-
-    this.currentPost = postData.post;
-    this.recommended = postData.recommended;
-    this.latest = postData.latest;
+  loadPostData(slug: string) {
+    this.postService.getArticleInformation(slug).subscribe({
+      next: (postPageData: PostPageData) => {
+        this.currentPost = postPageData.post;
+        this.recommended = postPageData.recommended;
+        this.latest = postPageData.latest;
+      },
+      error: (err) => {
+        console.error('Error fetching article information', err);
+      }
+    });
   }
 
   setupSeo() {
     this.seoService.updateMetadata({
       title: this.currentPost!.title,
       description: this.currentPost!.description,
-      image: this.currentPost!.image,
+      image: this.currentPost!.imageUrl,
       url: `https://bluefoxaquarismo.com.br/articles/${this.currentPost!.slug}`,
     });
   }

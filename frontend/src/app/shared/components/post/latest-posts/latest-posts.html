@@ -12,11 +12,11 @@
             @for (post of latestPosts; track post.id) {
             <a [routerLink]="['/articles', post.slug]" class="post-card">
                 <div class="card-image">
-                    <img [src]="post.image" [alt]="post.title" loading="lazy" />
-                    <span class="category-tag">{{ post.category }}</span>
+                    <img [src]="post.imageUrl" [alt]="post.title" loading="lazy" />
+                    <span class="category-tag">{{ post.categoryName }}</span>
                 </div>
                 <div class="card-body">
-                    <span class="post-date">{{ post.date }}</span>
+                    <span class="post-date">{{ post.publishedAt }}</span>
                     <h3>{{ post.title }}</h3>
                     <p>{{ post.description }}</p>
                     <span class="read-more">Ler artigo →</span>

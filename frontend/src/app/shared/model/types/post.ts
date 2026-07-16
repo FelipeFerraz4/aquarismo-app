@@ -4,18 +4,19 @@ export interface Post {
   id: string;
   title: string;
   description: string;
-  imageUrl: string;      
+  imageUrl: string;
   slug: string;
   readingTime: string;  
   published: boolean;
+  status: Status;
   publishedAt?: string;
   views: number;
-  status: Status;
+  likes: number;
+  recommendedPostIds: string[];
   
   authorId: string;      
-  categoryId: string;   
-    
   authorName: string;    
+  categoryId: string;   
   categoryName: string;  
 
   createdAt?: string;
@@ -23,7 +24,7 @@ export interface Post {
 }
 
 /**
- * Estrutura agregada necessária para montar a tela de detalhes de um artigo
+ * Aggregated structure required to assemble the article details screen
  */
 export interface PostPageData {
   post: Post;

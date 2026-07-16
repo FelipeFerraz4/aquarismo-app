@@ -106,23 +106,43 @@ export class BlogHome implements OnInit {
   ];
 
   ngOnInit(): void {
-    this.loadPostData();
-    this.loadFeaturedPost();
     this.setupSeo();
-  }
-
-  loadPostData() {
-    const allPostsReversed = this.postService.getAllPosts().reverse();
-    this.latest = allPostsReversed.filter(post => post.published).slice(0, 6);
-    this.lastPost = this.postService.getLastPost();
+    this.loadFeaturedPost();
+    this.loadLatestPosts();
+    this.loadLastPost();
   }
 
   loadFeaturedPost() {
-    this.featuredPosts.push(this.postService.getPostBySlug('how-to-choose-aquarium-filter'));
-    this.featuredPosts.push(this.postService.getPostBySlug('betta-fish-7-care-tips'));
-    this.featuredPosts.push(this.postService.getPostBySlug('aquarium-glass-bowing-danger'));
-    this.featuredPosts.push(this.postService.getPostBySlug('aquarium-size'));
-    // this.featuredPosts.push(this.postService.getPostBySlug('aquarium-selection-guide'));
+    this.postService.getMostRelevancePost(4).subscribe({
+      next: (posts: Post[]) => {
+        this.featuredPosts = posts; 
+      },
+      error: (err) => {
+        console.error('Error fetching relevant posts', err);
+      }
+    });
+  }
+
+  loadLatestPosts() {
+    this.postService.getLatestPosts(6).subscribe({
+      next: (posts: Post[]) => {
+        this.latest = posts;
+      },
+      error: (err) => {
+        console.error('Error fetching latest posts', err);
+      }
+    });
+  }
+
+  loadLastPost() {
+    this.postService.getLastPost().subscribe({
+      next: (post: Post) => {
+        this.lastPost = post;
+      },
+      error: (err) => {
+        console.error('Error fetching last post', err);
+      }
+    });
   }
 
   setupSeo() {

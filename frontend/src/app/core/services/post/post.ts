@@ -1,67 +1,57 @@
-import { Injectable } from '@angular/core';
-import { POST_MOCK } from '../../../shared/model/mocks/post-mock';
-import { CATEGORY_MOCK } from '../../../shared/model/mocks/category-mock';
-import { Post, PostPageData, SearchPostById, SearchPostBySlug } from '../../../shared/model/types/post';
-import { Category } from '../../../shared/model/types/category';
+import { Injectable, inject } from '@angular/core';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { environment } from '../../../../environments/environment';
+import { Post, PostPageData } from '../../../shared/model/types/post';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PostService {
+  private http = inject(HttpClient);
 
-  getPostPageData(slug: string, recommendedIds: string[]): PostPageData | null {
-    const post = this.getPostBySlug(slug);
-    if (!post) return null;
+  private postsApiUrl = `${environment.blogApi.urlBase}${environment.blogApi.request.post}`;
+  private categoriesApiUrl = `${environment.blogApi.urlBase}${environment.blogApi.request.category}`;
 
-    return {
-      post,
-      recommended: this.getRecommendedPosts(recommendedIds),
-      latest: this.getLatestPosts(post, recommendedIds),
-    };
+  /**
+   * Search for a specific post by its unique slug.
+   */
+  getPostBySlug(slug: string): Observable<Post> {
+    return this.http.get<Post>(`${this.postsApiUrl}/slug/${slug}`);
   }
 
-  getPostBySlug(slug: string): Post {
-    return SearchPostBySlug(POST_MOCK, slug);
+  /**
+   * Search for the most relevant posts based on a specific criterion (e.g., views, likes, etc.).
+   * @param limit The maximum number of relevant posts to retrieve. Default is 4.
+   * @returns An Observable emitting an array of the most relevant posts.
+   */
+  getMostRelevancePost(limit: number = 4): Observable<Post[]> {
+    const url = `${environment.blogApi.urlBase}${environment.blogApi.request.post}/most-relevance`;
+    
+    // Passa o limite como parâmetro de consulta (?limit=4)
+    const params = new HttpParams().set('limit', limit.toString());
+    
+    return this.http.get<Post[]>(url, { params });
   }
 
-  getRecommendedPosts(ids: string[]): Post[] {
-    return ids
-      .map((id) => SearchPostById(POST_MOCK, id))
-      .filter((post): post is Post => !!post);
+  /**
+   * Finds the most recently published post
+   * @returns An Observable emitting the most recently published post.
+   */
+  getLastPost(): Observable<Post> {
+    return this.http.get<Post>(`${this.postsApiUrl}/last-post`);
   }
 
-  getLatestPosts(currentPost: Post, recommendedIds: string[]): Post[] {
-    const allPostsReversed = [...POST_MOCK]
-      .filter((p) => p.id !== currentPost.id)
-      .filter((p) => !recommendedIds.includes(p.id))
-      .filter((p) => p.published)
-      .reverse();
-
-    const categoryLatest = allPostsReversed
-      .filter((p) => p.category === currentPost.category)
-      .slice(0, 2);
-
-    const postCount = 6 - categoryLatest.length;
-
-    const generalLatest = allPostsReversed
-      .filter((p) => !categoryLatest.includes(p))
-      .slice(0, postCount);
-
-    return [...categoryLatest, ...generalLatest];
+  /**
+   * Finds the latest posts, with an optional limit on the number of posts returned.
+   * @param limit The maximum number of latest posts to retrieve. Default is 6.
+   * @returns An Observable emitting an array of the latest posts.
+   */
+  getLatestPosts(limit: number = 6): Observable<Post[]> {
+    return this.http.get<Post[]>(`${this.postsApiUrl}/latest?limit=${limit}`);
   }
 
-  getAllPosts(): Post[] {
-    return POST_MOCK;
-  }
-
-  getAllCategories(): Category[] {
-    return CATEGORY_MOCK;
-  }
-
-  getLastPost(): Post {
-    const allPosts = this.getAllPosts();
-    if (!allPosts.length) throw new Error('No posts found');
-
-    return POST_MOCK[POST_MOCK.length - 1];
+  getArticleInformation(slug: string): Observable<PostPageData> {
+    return this.http.get<PostPageData>(`${this.postsApiUrl}/article-information/${slug}`);
   }
 }

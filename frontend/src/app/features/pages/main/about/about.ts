@@ -37,12 +37,19 @@ export class About implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadPostData();
+    this.loadLastPost();
     this.setupSeo();
   }
 
-  loadPostData() {
-    this.lastPost = this.postService.getLastPost();
+  loadLastPost() {
+    this.postService.getLastPost().subscribe({
+      next: (post: Post) => {
+        this.lastPost = post;
+      },
+      error: (err) => {
+        console.error('Error fetching last post', err);
+      }
+    });
   }
 
 
