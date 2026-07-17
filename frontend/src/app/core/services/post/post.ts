@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../../../environments/environment';
-import { Post, PostPageData } from '../../../shared/model/types/post';
+import { Post } from '../../../shared/model/types/post';
 
 @Injectable({
   providedIn: 'root',
@@ -51,7 +51,11 @@ export class PostService {
     return this.http.get<Post[]>(`${this.postsApiUrl}/latest?limit=${limit}`);
   }
 
-  getArticleInformation(slug: string): Observable<PostPageData> {
-    return this.http.get<PostPageData>(`${this.postsApiUrl}/article-information/${slug}`);
+  getRecommendedPosts(slug: string): Observable<Post[]> {
+    return this.http.get<Post[]>(`${this.postsApiUrl}/recommended-posts/${slug}`);
+  }
+
+  getNextPost(slug: string): Observable<Post[]> {
+    return this.http.get<Post[]>(`${this.postsApiUrl}/next-posts/${slug}`);
   }
 }

@@ -27,7 +27,6 @@ export interface Post {
  * Aggregated structure required to assemble the article details screen
  */
 export interface PostPageData {
-  post: Post;
   recommended: Post[];
   latest: Post[];
 }
