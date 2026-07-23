@@ -1,13 +1,20 @@
 import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
 import { provideRouter } from '@angular/router';
 import { TermsOfUse } from './terms-of-use';
+import { SeoService } from '../../../../core/services/seo/seo-service';
 
 describe('TermsOfUse', () => {
   let spectator: Spectator<TermsOfUse>;
 
   const createComponent = createComponentFactory({
     component: TermsOfUse,
-    providers: [provideRouter([])]
+    providers: [
+      provideRouter([]),
+      {
+        provide: SeoService,
+        useValue: { updateMetadata: jest.fn() }
+      }
+    ]
   });
 
   beforeEach(() => {

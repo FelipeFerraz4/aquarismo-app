@@ -2,6 +2,8 @@ import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
 import { SeoService } from '../../../../core/services/seo/seo-service';
 import { PostService } from '../../../../core/services/post/post';
 import { AquariumSize } from './aquarium-size';
+import { provideRouter } from '@angular/router';
+import { of } from 'rxjs';
 
 describe('AquariumSize', () => {
   let spectator: Spectator<AquariumSize>;
@@ -9,6 +11,7 @@ describe('AquariumSize', () => {
   const createComponent = createComponentFactory({
     component: AquariumSize,
     providers: [
+      provideRouter([]),
       {
         provide: SeoService,
         useValue: { updateMetadata: jest.fn() }
@@ -16,16 +19,16 @@ describe('AquariumSize', () => {
       {
         provide: PostService,
         useValue: {
-          getPostPageData: jest.fn().mockReturnValue({
-            post: {
-              title: 'Test',
-              description: 'Desc',
-              image: 'img.png',
-              slug: 'test'
-            },
-            recommended: [],
-            latest: []
-          })
+          getPostBySlug: jest.fn().mockReturnValue(of({
+            title: 'Test',
+            description: 'Desc',
+            imageUrl: 'img.png',
+            slug: 'test',
+            views: 0
+          })),
+          getRecommendedPosts: jest.fn().mockReturnValue(of([])),
+          getNextPost: jest.fn().mockReturnValue(of([])),
+          incrementViews: jest.fn().mockReturnValue(of(undefined))
         }
       }
     ]

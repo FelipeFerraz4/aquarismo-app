@@ -1,72 +1,124 @@
 import { TestBed } from '@angular/core/testing';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient } from '@angular/common/http';
 import { PostService } from './post';
-import { POST_MOCK } from '../../../shared/model/mocks/post-mock';
+import { Post } from '../../../shared/model/types/post';
+import { Status } from '../../../shared/model/types/status';
 
 describe('PostService', () => {
   let service: PostService;
+  let httpMock: HttpTestingController;
+
+  const dummyPost: Post = {
+    id: '1',
+    title: 'Test Post',
+    description: 'Test Description',
+    imageUrl: 'test.png',
+    slug: 'test-post',
+    views: 10,
+    published: true,
+    status: Status.PUBLISHED,
+    publishedAt: '2026-01-01',
+    readingTime: '10 min',
+    likes: 10,
+    recommendedPostIds: [],
+
+    authorId: '1',
+    authorName: 'Author',
+    categoryId: '1',
+    categoryName: 'Category',
+
+    createdAt: "",
+    updatedAt: ""
+  };
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [
+        PostService,
+        provideHttpClient(),
+        provideHttpClientTesting()
+      ]
+    });
+
     service = TestBed.inject(PostService);
+    httpMock = TestBed.inject(HttpTestingController);
+  });
+
+  afterEach(() => {
+    httpMock.verify();
   });
 
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should return a post by slug', () => {
-    const post = service.getPostBySlug('aquarium-size');
+  it('should fetch post by slug', () => {
+    service.getPostBySlug('test-post').subscribe(post => {
+      expect(post).toEqual(dummyPost);
+    });
 
-    expect(post).toBeTruthy();
-    expect(post?.slug).toBe('aquarium-size');
+    const req = httpMock.expectOne(req => req.url.endsWith('/slug/test-post'));
+    expect(req.request.method).toBe('GET');
+    req.flush(dummyPost);
   });
 
-  it('should return undefined for invalid slug', () => {
-    const post = service.getPostBySlug('invalid-slug');
+  it('should fetch most relevance posts', () => {
+    service.getMostRelevancePost(4).subscribe(posts => {
+      expect(posts.length).toBe(1);
+      expect(posts[0]).toEqual(dummyPost);
+    });
 
-    expect(post).toBeUndefined();
+    const req = httpMock.expectOne(req => req.urlWithParams.includes('/most-relevance?limit=4'));
+    expect(req.request.method).toBe('GET');
+    req.flush([dummyPost]);
   });
 
-  it('should return recommended posts by ids', () => {
-    const posts = service.getRecommendedPosts(['1', '3']);
+  it('should fetch last post', () => {
+    service.getLastPost().subscribe(post => {
+      expect(post).toEqual(dummyPost);
+    });
 
-    expect(posts.length).toBe(2);
-    expect(posts[0]).toBeTruthy();
+    const req = httpMock.expectOne(req => req.url.endsWith('/last-post'));
+    expect(req.request.method).toBe('GET');
+    req.flush(dummyPost);
   });
 
-  it('should filter invalid recommended ids', () => {
-    const posts = service.getRecommendedPosts(['1', '999']);
+  it('should fetch latest posts with limit', () => {
+    service.getLatestPosts(6).subscribe(posts => {
+      expect(posts.length).toBe(1);
+    });
 
-    expect(posts.length).toBe(1);
+    const req = httpMock.expectOne(req => req.url.includes('/latest?limit=6'));
+    expect(req.request.method).toBe('GET');
+    req.flush([dummyPost]);
   });
 
-  it('should return latest posts excluding current post', () => {
-    const currentPost = POST_MOCK[0];
-    const recommendedIds = ['1', '3'];
-    const latest = service.getLatestPosts(currentPost, recommendedIds);
+  it('should fetch recommended posts', () => {
+    service.getRecommendedPosts('test-post').subscribe(posts => {
+      expect(posts.length).toBe(1);
+    });
 
-    expect(latest.length).toBeGreaterThan(0);
-    expect(latest.find(p => p.id === currentPost.id)).toBeFalsy();
-    expect(latest.find(p => recommendedIds.includes(p.id))).toBeFalsy();
+    const req = httpMock.expectOne(req => req.url.endsWith('/recommended-posts/test-post'));
+    expect(req.request.method).toBe('GET');
+    req.flush([dummyPost]);
   });
 
-  it('should return full post page data', () => {
-    const data = service.getPostPageData('aquarium-size', ['1', '3']);
+  it('should fetch next posts', () => {
+    service.getNextPost('test-post').subscribe(posts => {
+      expect(posts.length).toBe(1);
+    });
 
-    expect(data).toBeTruthy();
-    expect(data?.post.slug).toBe('aquarium-size');
-    expect(data?.recommended.length).toBe(2);
-    expect(data?.latest.length).toBeGreaterThan(0);
+    const req = httpMock.expectOne(req => req.url.endsWith('/next-posts/test-post'));
+    expect(req.request.method).toBe('GET');
+    req.flush([dummyPost]);
   });
 
-  it('should return null if post not found', () => {
-    const data = service.getPostPageData('invalid-slug', ['1']);
+  it('should increment views', () => {
+    service.incrementViews('test-post').subscribe();
 
-    expect(data).toBeNull();
-  });
-
-  it('should return all posts', () => {
-    const posts = service.getAllPosts();
-    expect(posts.length).toBe(POST_MOCK.length);
+    const req = httpMock.expectOne(req => req.url.endsWith('/test-post/views'));
+    expect(req.request.method).toBe('PATCH');
+    req.flush(null);
   });
 });

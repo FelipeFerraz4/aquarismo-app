@@ -1,13 +1,20 @@
 import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
 import { provideRouter } from '@angular/router';
 import { PrivacyPolicy } from './privacy-policy';
+import { SeoService } from '../../../../core/services/seo/seo-service';
 
 describe('PrivacyPolicy', () => {
   let spectator: Spectator<PrivacyPolicy>;
 
   const createComponent = createComponentFactory({
     component: PrivacyPolicy,
-    providers: [provideRouter([])]
+    providers: [
+      provideRouter([]),
+      {
+        provide: SeoService,
+        useValue: { updateMetadata: jest.fn() }
+      }
+    ]
   });
 
   beforeEach(() => {

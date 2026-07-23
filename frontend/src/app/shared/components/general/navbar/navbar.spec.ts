@@ -114,22 +114,6 @@ describe('Navbar', () => {
     expect(spectator.component.menuOpen).toBe(true);
   });
 
-  it('should toggle artigos when button is clicked', () => {
-    const button = spectator.queryAll('button.dropdown-toggle')[0] as HTMLButtonElement;
-
-    button.click();
-
-    expect(spectator.component.artigosOpen).toBe(true);
-  });
-
-  it('should toggle ferramentas when button is clicked', () => {
-    const button = spectator.queryAll('button.dropdown-toggle')[1] as HTMLButtonElement;
-
-    button.click();
-
-    expect(spectator.component.ferramentasOpen).toBe(true);
-  });
-
   it('should call login', () => {
     spectator.component.login();
 

@@ -11,7 +11,7 @@ import localePt from '@angular/common/locales/pt';
 
 import { provideClientHydration, withEventReplay } from '@angular/platform-browser';
 import { provideRouter } from '@angular/router';
-import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 
 import { routes } from './app.routes';
 import { AuthService } from './core/services/auth/auth-service';
@@ -30,6 +30,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideClientHydration(withEventReplay()),
     provideHttpClient(
+      withFetch(),
       withInterceptors([tenantInterceptor])
     ),
 

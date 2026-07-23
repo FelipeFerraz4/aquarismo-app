@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ArticlePage } from './article-page';
+import { SeoService } from '../../../../core/services/seo/seo-service';
 
 describe('ArticlePage', () => {
   let component: ArticlePage;
@@ -8,7 +9,13 @@ describe('ArticlePage', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ArticlePage]
+      imports: [ArticlePage],
+      providers: [
+        {
+          provide: SeoService,
+          useValue: { updateMetadata: jest.fn() }
+        }
+      ]
     })
     .compileComponents();
 

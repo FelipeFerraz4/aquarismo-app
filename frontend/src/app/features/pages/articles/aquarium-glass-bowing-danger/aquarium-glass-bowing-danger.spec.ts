@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { PLATFORM_ID } from '@angular/core';
+import { of } from 'rxjs';
 
 import { AquariumGlassBowingDanger } from './aquarium-glass-bowing-danger';
 import { SeoService } from '../../../../core/services/seo/seo-service';
@@ -15,16 +16,16 @@ describe('AquariumGlassBowingDanger', () => {
   };
 
   const mockPostService = {
-    getPostPageData: jest.fn().mockReturnValue({
-      post: {
-        title: 'Test',
-        description: 'Test desc',
-        image: 'img.png',
-        slug: 'test'
-      },
-      recommended: [],
-      latest: []
-    })
+    getPostBySlug: jest.fn().mockReturnValue(of({
+      title: 'Test',
+      description: 'Test desc',
+      imageUrl: 'img.png',
+      slug: 'test',
+      views: 0
+    })),
+    getRecommendedPosts: jest.fn().mockReturnValue(of([])),
+    getNextPost: jest.fn().mockReturnValue(of([])),
+    incrementViews: jest.fn().mockReturnValue(of(undefined))
   };
 
   beforeEach(async () => {

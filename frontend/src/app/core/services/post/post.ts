@@ -58,4 +58,8 @@ export class PostService {
   getNextPost(slug: string): Observable<Post[]> {
     return this.http.get<Post[]>(`${this.postsApiUrl}/next-posts/${slug}`);
   }
+
+  incrementViews(slug: string): Observable<void> {
+    return this.http.patch<void>(`${this.postsApiUrl}/${slug}/views`, {});
+  }
 }

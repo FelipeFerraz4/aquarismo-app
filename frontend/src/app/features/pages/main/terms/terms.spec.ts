@@ -1,6 +1,7 @@
 import { createComponentFactory, Spectator } from '@ngneat/spectator/jest';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Terms } from './terms';
+import { SeoService } from '../../../../core/services/seo/seo-service';
 
 describe('Terms', () => {
   let spectator: Spectator<Terms>;
@@ -9,6 +10,12 @@ describe('Terms', () => {
     component: Terms,
     imports: [
       RouterTestingModule
+    ],
+    providers: [
+      {
+        provide: SeoService,
+        useValue: { updateMetadata: jest.fn() }
+      }
     ]
   });
 

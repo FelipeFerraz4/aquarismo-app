@@ -34,16 +34,31 @@ export class AquariumGlassBowingDanger implements OnInit, AfterViewInit {
     this.loadPost(slug);
     this.loadRecommendedPosts(slug);
     this.loadNextPost(slug);
-    this.setupSeo();
   }
 
   loadPost(slug: string) {
     this.postService.getPostBySlug(slug).subscribe({
       next: (post: Post) => {
         this.currentPost = post;
+
+        this.setupSeo(post);
+        this.incrementPostViews(slug);
       },
       error: (err) => {
         console.error('Error fetching post by slug', err);
+      }
+    });
+  }
+
+  incrementPostViews(slug: string) {
+    this.postService.incrementViews(slug).subscribe({
+      next: () => {
+        if (this.currentPost) {
+          this.currentPost.views++;
+        }
+      },
+      error: (err) => {
+        console.error('Failed to increment views', err);
       }
     });
   }
@@ -89,12 +104,12 @@ export class AquariumGlassBowingDanger implements OnInit, AfterViewInit {
     this.observer.observe(videoEl);
   }
 
-  setupSeo() {
+  setupSeo(post: Post) {
     this.seoService.updateMetadata({
-      title: this.currentPost!.title,
-      description: this.currentPost!.description,
-      image: this.currentPost!.imageUrl,
-      url: `https://bluefoxaquarismo.com.br/articles/${this.currentPost!.slug}`,
+      title: post.title,
+      description: post.description,
+      image: post.imageUrl,
+      url: `https://bluefoxaquarismo.com.br/articles/${post.slug}`,
     });
   }
 
