@@ -40,4 +40,8 @@ export const articlesRoutes: Routes = [
     path: 'community-aquarium-guide',
     loadComponent: () => import('./community-aquarium-guide/community-aquarium-guide').then((m) => m.CommunityAquariumGuide),
   },
+  {
+    path: 'aquatic-plants-guide',
+    loadComponent: () => import('./aquatic-plants-guide/aquatic-plants-guide').then((m) => m.AquaticPlantsGuide),
+  },
 ];

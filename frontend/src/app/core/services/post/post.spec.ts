@@ -117,7 +117,7 @@ describe('PostService', () => {
   it('should increment views', () => {
     service.incrementViews('test-post').subscribe();
 
-    const req = httpMock.expectOne(req => req.url.endsWith('/test-post/views'));
+    const req = httpMock.expectOne(req => req.url.endsWith('/views/test-post'));
     expect(req.request.method).toBe('PATCH');
     req.flush(null);
   });

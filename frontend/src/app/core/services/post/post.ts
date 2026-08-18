@@ -27,10 +27,10 @@ export class PostService {
    */
   getMostRelevancePost(limit: number = 4): Observable<Post[]> {
     const url = `${environment.blogApi.urlBase}${environment.blogApi.request.post}/most-relevance`;
-    
+
     // Passa o limite como parâmetro de consulta (?limit=4)
     const params = new HttpParams().set('limit', limit.toString());
-    
+
     return this.http.get<Post[]>(url, { params });
   }
 
@@ -60,6 +60,6 @@ export class PostService {
   }
 
   incrementViews(slug: string): Observable<void> {
-    return this.http.patch<void>(`${this.postsApiUrl}/${slug}/views`, {});
+    return this.http.patch<void>(`${this.postsApiUrl}/views/${slug}`, {});
   }
 }

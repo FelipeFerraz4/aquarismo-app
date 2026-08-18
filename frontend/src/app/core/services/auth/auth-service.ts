@@ -28,10 +28,16 @@ export class AuthService {
       return false;
     }
 
-    return await this.kc.init({
+    const authenticated = await this.kc.init({
       onLoad: 'check-sso',
       checkLoginIframe: false,
     });
+
+    console.log('Autenticado:', authenticated);
+    console.log('Access Token:', this.kc.token);
+    console.log('Token decodificado:', this.kc.tokenParsed);
+
+    return authenticated;
   }
 
   login() {
